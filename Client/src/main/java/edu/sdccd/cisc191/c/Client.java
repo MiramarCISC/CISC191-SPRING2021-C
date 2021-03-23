@@ -1,7 +1,6 @@
-package edu.sdccd.cisc191.a;
+package edu.sdccd.cisc191.c;
 
 import java.net.*;
-import java.util.Scanner;
 import java.io.*;
 
 /**
