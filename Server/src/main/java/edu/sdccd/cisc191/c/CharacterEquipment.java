@@ -17,17 +17,17 @@ public class CharacterEquipment {
     private Feet feet;
     private Shield shield;
 
-    public void setSw1(Sword sw1Choice) {
+    public void setSwd1(Sword sw1Choice) {
         swd1 = sw1Choice;
     }
 
-    public void setSw2(Sword sw2Choice) {
+    public void setSwd2(Sword sw2Choice) {
         swd2 = sw2Choice;
     }
 
-    public void setSt1(Staff st1Choice) { stf1 = st1Choice;}
+    public void setStf1(Staff st1Choice) { stf1 = st1Choice;}
 
-    public void setSt2(Staff st2Choice) { stf2 = st2Choice;}
+    public void setStf2(Staff st2Choice) { stf2 = st2Choice;}
 
     public void setBow(Bow bowChoice) { bow = bowChoice;}
 

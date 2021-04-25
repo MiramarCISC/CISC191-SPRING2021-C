@@ -13,6 +13,14 @@ public abstract class Weapon extends Item {
         equippable = true;
     }
 
+    public void setAttack(int atk) {
+        attack = atk;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
     public void applyFire() {
 
     }

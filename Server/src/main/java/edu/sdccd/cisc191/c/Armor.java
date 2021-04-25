@@ -10,6 +10,14 @@ public abstract class Armor extends Item {
         equippable = true;
     }
 
+    public void setDefense(int def) {
+        defense = def;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
     @Override
     protected void useItem(Battler participant) {
 

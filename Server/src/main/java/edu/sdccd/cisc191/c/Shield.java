@@ -14,6 +14,22 @@ public class Shield extends Item {
 
     }
 
+    public void setDmgReduction(int dRed) {
+        dmgReduction = dRed;
+    }
+
+    public void setDefIncrease(int defI) {
+        defIncrease = defI;
+    }
+
+    public int getDefIncrease() {
+        return defIncrease;
+    }
+
+    public int getDmgReduction() {
+        return dmgReduction;
+    }
+
     @Override
     protected void useItem(Battler participant) {
 
