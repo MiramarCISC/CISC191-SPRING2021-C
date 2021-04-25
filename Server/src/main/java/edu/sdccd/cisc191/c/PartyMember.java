@@ -26,72 +26,72 @@ public class PartyMember extends Battler {
         weaponAtk = 0;
 
         if (currJob < 2) {
-            if (!charEq.getSwd1().equals(null)) {
+            if (charEq.getSwd1() != null) {
                 weaponAtk += charEq.getSwd1().getAttack();
             }
 
-            if (!charEq.getSwd2().equals(null)) {
+            if (charEq.getSwd2() != null) {
                 weaponAtk += charEq.getSwd2().getAttack();
             }
         }
 
         if (currJob > 3) {
-            if (!charEq.getStf1().equals(null)) {
+            if (charEq.getStf1() != null) {
                 weaponAtk += charEq.getStf1().getAttack();
             }
 
-            if (!charEq.getStf2().equals(null)) {
+            if (charEq.getStf2() != null) {
                 weaponAtk += charEq.getStf2().getAttack();
             }
         }
 
         if (currJob == 2) {
-            if (!charEq.getTrw().equals(null)) {
+            if (charEq.getTrw() != null) {
                 weaponAtk += charEq.getTrw().getAttack();
             }
         }
 
         if (currJob == 3) {
-            if (!charEq.getBow().equals(null)) {
+            if (charEq.getBow() != null) {
                 weaponAtk += charEq.getBow().getAttack();
             }
         }
 
         if ((currJob < 2) || (currJob > 3)) {
-            if (!charEq.getShield().equals(null)) {
+            if (charEq.getShield() != null) {
                 weaponAtk -= charEq.getShield().getDmgReduction();
             }
         }
 
         armorDef = 0;
 
-        if (!charEq.getHead().equals(null)) {
+        if (charEq.getHead() != null) {
             armorDef += charEq.getHead().getDefense();
         }
 
-        if (!charEq.getBody().equals(null)) {
+        if (charEq.getBody() != null) {
             armorDef += charEq.getBody().getDefense();
         }
 
-        if (!charEq.getLegs().equals(null)) {
+        if (charEq.getLegs() != null) {
             armorDef += charEq.getLegs().getDefense();
         }
 
-        if (!charEq.getFeet().equals(null)) {
+        if (charEq.getFeet() != null) {
             armorDef += charEq.getFeet().getDefense();
         }
 
-        if (!charEq.getShield().equals(null)) {
+        if (charEq.getShield() != null) {
             armorDef += charEq.getShield().getDefIncrease();
         }
 
     }
 
     public void changeSwd1(Sword newSwd1) {
-        if ((currJob == 0) && (!charEq.getSwd2().equals(null))) {
+        if ((currJob == 0) && (charEq.getSwd2() != null)) {
             System.out.println(name + " can only hold one sword.");
         }
-        else if ((currJob == 1) && (!charEq.getSwd2().equals(null)) && (!charEq.getShield().equals(null))) {
+        else if ((currJob == 1) && (charEq.getSwd2() != null) && (charEq.getShield() != null)) {
             System.out.println(name + "'s hands are already full. Un-equip a sword or shield.");
         }
         else if (currJob > 1) {
@@ -105,10 +105,10 @@ public class PartyMember extends Battler {
     }
 
     public void changeSwd2(Sword newSwd2) {
-        if ((currJob == 0) && (!charEq.getSwd1().equals(null))) {
+        if ((currJob == 0) && (charEq.getSwd1() != null)) {
             System.out.println(name + " cannot hold another sword.");
         }
-        else if ((currJob == 1) && (!charEq.getSwd1().equals(null)) && (!charEq.getShield().equals(null))) {
+        else if ((currJob == 1) && (charEq.getSwd1() != null) && (charEq.getShield() != null)) {
             System.out.println(name + "'s hands are already full. Un-equip a sword or shield.");
         }
         else if (currJob > 1) {
@@ -125,7 +125,7 @@ public class PartyMember extends Battler {
         if (currJob < 4) {
             System.out.println(name + " cannot hold a staff.");
         }
-        else if ((!charEq.getStf2().equals(null)) && (!charEq.getShield().equals(null))) {
+        else if ((charEq.getStf2() != null) && (charEq.getShield() != null)) {
             System.out.println(name + "'s hands are already full. Un-equip a staff or shield.");
         }
         else {
@@ -139,7 +139,7 @@ public class PartyMember extends Battler {
         if (currJob < 4) {
             System.out.println(name + " cannot hold a staff.");
         }
-        else if ((!charEq.getStf1().equals(null)) && (!charEq.getShield().equals(null))) {
+        else if ((charEq.getStf1() != null) && (charEq.getShield() != null)) {
             System.out.println(name + "'s hands are already full. Un-equip a staff or shield.");
         }
         else {
@@ -192,10 +192,10 @@ public class PartyMember extends Battler {
         if ((currJob == 0) || (currJob == 2) || (currJob == 3)) {
             System.out.println(name + " cannot hold a shield.");
         }
-        else if (!charEq.getSwd1().equals(null) && !charEq.getSwd2().equals(null)) {
+        else if ((charEq.getSwd1() != null) && (charEq.getSwd2() != null)) {
             System.out.println(name + "'s hands are already full. Un-equip a sword.");
         }
-        else if (!charEq.getStf1().equals(null) && !charEq.getStf2().equals(null)) {
+        else if ((charEq.getStf1() != null) && (charEq.getStf2() != null)) {
             System.out.println(name + "'s hands are already full. Un-equip a staff.");
         }
         else {
