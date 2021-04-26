@@ -59,7 +59,7 @@ public class PartyMember extends Battler {
 
         if ((currJob < 2) || (currJob > 3)) {
             if (charEq.getShield() != null) {
-                weaponAtk -= charEq.getShield().getDmgReduction();
+                weaponAtk -= charEq.getShield().reduceDamage();
             }
         }
 
@@ -82,7 +82,7 @@ public class PartyMember extends Battler {
         }
 
         if (charEq.getShield() != null) {
-            armorDef += charEq.getShield().getDefIncrease();
+            armorDef += charEq.getShield().increaseDefense();
         }
 
     }
@@ -99,7 +99,7 @@ public class PartyMember extends Battler {
         }
         else {
             charEq.setSwd1(newSwd1);
-            System.out.println(name + " is now holding a " + newSwd1.getItemName() + ".");
+            System.out.println(name + " is now holding a " + newSwd1.getName() + ".");
             evalEquip();
         }
     }
@@ -116,7 +116,7 @@ public class PartyMember extends Battler {
         }
         else {
             charEq.setSwd2(newSwd2);
-            System.out.println(name + " is now holding a " + newSwd2.getItemName() + ".");
+            System.out.println(name + " is now holding a " + newSwd2.getName() + ".");
             evalEquip();
         }
     }
@@ -130,7 +130,7 @@ public class PartyMember extends Battler {
         }
         else {
             charEq.setStf1(newStf1);
-            System.out.println(name + " is now holding a " + newStf1.getItemName() + ".");
+            System.out.println(name + " is now holding a " + newStf1.getName() + ".");
             evalEquip();
         }
     }
@@ -144,7 +144,7 @@ public class PartyMember extends Battler {
         }
         else {
             charEq.setStf2(newStf2);
-            System.out.println(name + " is now holding a " + newStf2.getItemName() + ".");
+            System.out.println(name + " is now holding a " + newStf2.getName() + ".");
         }
     }
 
@@ -154,7 +154,7 @@ public class PartyMember extends Battler {
         }
         else {
             charEq.setBow(newBow);
-            System.out.println(name + " is now holding a " + newBow.getItemName() + ".");
+            System.out.println(name + " is now holding a " + newBow.getName() + ".");
         }
     }
 
@@ -164,28 +164,28 @@ public class PartyMember extends Battler {
         }
         else {
             charEq.setTrw(newTrw);
-            System.out.println(name + " is now holding a " + newTrw.getItemName() + ".");
+            System.out.println(name + " is now holding a " + newTrw.getName() + ".");
         }
     }
 
     public void changeHead(Head newHead) {
         charEq.setHead(newHead);
-        System.out.println(name + " is now wearing a " + newHead.getItemName() + ".");
+        System.out.println(name + " is now wearing a " + newHead.getName() + ".");
     }
 
     public void changeBody(Body newBody) {
         charEq.setBody(newBody);
-        System.out.println(name + " is now wearing a " + newBody.getItemName() + ".");
+        System.out.println(name + " is now wearing a " + newBody.getName() + ".");
     }
 
     public void changeLegs(Legs newLegs) {
         charEq.setLegs(newLegs);
-        System.out.println(name + " is now wearing " + newLegs.getItemName() + ".");
+        System.out.println(name + " is now wearing " + newLegs.getName() + ".");
     }
 
     public void changeFeet(Feet newFeet) {
         charEq.setFeet(newFeet);
-        System.out.println(name + " is now wearing " + newFeet.getItemName() + ".");
+        System.out.println(name + " is now wearing " + newFeet.getName() + ".");
     }
 
     public void changeShield(Shield newShield) {
@@ -200,7 +200,7 @@ public class PartyMember extends Battler {
         }
         else {
             charEq.setShield(newShield);
-            System.out.println(name + " is now holding a " + newShield.getItemName() + ".");
+            System.out.println(name + " is now holding a " + newShield.getName() + ".");
         }
     }
 

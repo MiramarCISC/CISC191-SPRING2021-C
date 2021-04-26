@@ -4,30 +4,24 @@ public class Shield extends Item {
 
     private int dmgReduction;
     private int defIncrease;
-    private String rarity;
 
     public Shield() {
         equippable = true;
     }
 
-    public void reduceDamage() {
-
+    public int reduceDamage() {
+        return dmgReduction;
     }
 
-    public void setDmgReduction(int dRed) {
-        dmgReduction = dRed;
-    }
-
-    public void setDefIncrease(int defI) {
-        defIncrease = defI;
-    }
-
-    public int getDefIncrease() {
+    public int increaseDefense() {
         return defIncrease;
     }
 
-    public int getDmgReduction() {
-        return dmgReduction;
+    public Shield(String name, int dmgReduction, int defIncrease, String rarity) {
+        this.name = name;
+        this.dmgReduction = dmgReduction;
+        this.defIncrease = defIncrease;
+        this.rarity = rarity;
     }
 
     @Override
