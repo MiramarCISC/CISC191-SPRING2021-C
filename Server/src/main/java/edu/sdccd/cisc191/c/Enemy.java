@@ -7,14 +7,4 @@ public class Enemy extends Battler {
 
     }
 
-    @Override
-    protected void setStatus(StatusEffect newStatus) {
-
-    }
-
-    @Override
-    protected StatusEffect getStatus() {
-        return null;
-    }
-
 }

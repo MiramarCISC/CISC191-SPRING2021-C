@@ -7,7 +7,9 @@ public abstract class Spell implements Comparable<Spell> {
     protected int cost;
     protected boolean color;
 
-    protected abstract void cast(Battler participant);
+    protected abstract void castOnE(Enemy enemy);
+
+    protected abstract void castOnPM(PartyMember member);
 
     public Spell(String call, int mL, int cst, boolean BoW) {
         name = call;

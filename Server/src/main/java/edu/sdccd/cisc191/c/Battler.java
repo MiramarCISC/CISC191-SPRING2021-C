@@ -7,6 +7,8 @@ public abstract class Battler {
     protected String name;
     protected int level;
     protected int exp;
+    protected int maxMP;
+    protected int currMP;
     protected int maxHP;
     protected int currHP;
     protected int defStat;
@@ -15,12 +17,16 @@ public abstract class Battler {
     protected int currAtk;
     protected int spdStat;
     protected int currSpd;
+    protected int durSE;
+    protected int buffCD;
     protected boolean stunned;
     protected boolean burned;
     protected boolean poisoned;
     protected boolean asleep;
     protected boolean dead;
-    protected StatusEffect status;
+    protected boolean presentSE;
+    protected boolean presentBuff;
+    // protected StatusEffect status;
     protected StatCalc calculator;
 
     public void setName(String visName) { name = visName; }
@@ -32,6 +38,10 @@ public abstract class Battler {
     public void setMaxHP(int mHP) { maxHP = mHP; }
 
     public void setCurrHP(int cHP) { currHP = cHP; }
+
+    public void setMaxMP(int mMP) { maxMP = mMP; }
+
+    public void setCurrMP(int cMP) { currMP = cMP; }
 
     public void setDefStat(int dStat) { defStat = dStat; }
 
@@ -45,6 +55,10 @@ public abstract class Battler {
 
     public void setCurrSpd(int cSpd) { currSpd = cSpd; }
 
+    public void setDurSE(int dSE) { durSE = dSE; }
+
+    public void setBuffCD(int bCD) { buffCD = bCD; }
+
     public void setStunned(boolean stun) { stunned = stun; }
 
     public void setBurned(boolean burn) { burned = burn; }
@@ -55,6 +69,10 @@ public abstract class Battler {
 
     public void setDead(boolean death) { dead = death; }
 
+    public void setPresentSE(boolean statusEf) { presentSE = statusEf; }
+
+    public void setPresentBuff(boolean presBuff) { presentBuff = presBuff; }
+
     public String getName() { return name; }
 
     public int getLevel() { return level; }
@@ -64,6 +82,10 @@ public abstract class Battler {
     public int getMaxHP() { return maxHP; }
 
     public int getCurrHP() { return currHP; }
+
+    public int getMaxMP() { return maxMP; }
+
+    public int getCurrMP() { return currMP; }
 
     public int getDefStat() { return defStat; }
 
@@ -77,6 +99,10 @@ public abstract class Battler {
 
     public int getCurrSpd() { return currSpd; }
 
+    public int getDurSE() { return durSE; }
+
+    public int getBuffCD() { return buffCD; }
+
     public boolean getStunned() { return stunned; }
 
     public boolean getBurned() { return burned; }
@@ -87,8 +113,13 @@ public abstract class Battler {
 
     public boolean getDead() { return dead; }
 
+    public boolean getPresentSE() { return presentSE; }
+
+    public boolean getPresentBuff() { return presentBuff; }
+
 
     protected abstract void moveHappens();
-    protected abstract void setStatus(StatusEffect newStatus);
-    protected abstract StatusEffect getStatus();
+
+    // protected abstract StatusEffect getStatus();
+    // protected abstract void setStatus(StatusEffect newStatus);
 }

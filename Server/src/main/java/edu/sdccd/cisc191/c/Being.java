@@ -1,7 +1,5 @@
 package edu.sdccd.cisc191.c;
 
-import java.util.ArrayList;
-
 public abstract class Being {
 
     protected String typeName;
@@ -9,7 +7,6 @@ public abstract class Being {
     protected int baseAtk;
     protected int baseSpd;
     protected int baseHP;
-    protected ArrayList<Spell> spellList;
 
     public void setTypeName(String type) {
         typeName = type;

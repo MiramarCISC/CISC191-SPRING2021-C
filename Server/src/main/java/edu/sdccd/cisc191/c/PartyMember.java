@@ -204,7 +204,8 @@ public class PartyMember extends Battler {
         }
     }
 
-    public void changeJob(int newJob, ArrayList<Spell> allSpells) {
+    public void changeJob(int newJob, ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
+                          ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC) {
 
         currJob = newJob;
         charEq = new CharacterEquipment();
@@ -228,17 +229,17 @@ public class PartyMember extends Battler {
                 break;
             case 4:
                 level = whiteMage.expToLevel(exp);
-                whiteMage.setLegalSpells(name, level, allSpells);
+                whiteMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level, true, false);
                 // Change stats based on class and level
                 break;
             case 5:
                 level = blackMage.expToLevel(exp);
-                blackMage.setLegalSpells(name, level, allSpells);
+                blackMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level, false, true);
                 // Change stats based on class and level
                 break;
             case 6:
                 level = redMage.expToLevel(exp);
-                redMage.setLegalSpells(name, level, allSpells);
+                redMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level, true, true);
                 // Change stats based on class and level
                 break;
         }
@@ -288,13 +289,17 @@ public class PartyMember extends Battler {
 
     }
 
+    /*
     @Override
     protected void setStatus(StatusEffect newStatus) {
 
     }
+    */
 
+    /*
     @Override
     protected StatusEffect getStatus() {
         return null;
     }
+    */
 }
