@@ -1,5 +1,6 @@
 package edu.sdccd.cisc191.c;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GridSquare {
@@ -21,7 +22,7 @@ public class GridSquare {
         special = sp;
     }
 
-    public void randEncounter() {
+    public void randEncounter(ArrayList<PartyMember> party) {
         Random rand = new Random();
         int determine = rand.nextInt(probability);
         if (determine == 0) {
@@ -53,14 +54,55 @@ public class GridSquare {
         }
     }
 
-    public void bossEncounter() {
+    /**
+     * This method only does something when the GridSquare is marked as a "special" one, and will cause a boss to
+     * appear, which when defeated, will give the users treasure. A local class BossBuilder is created in this method to
+     * improve readability.
+     * @param party The user-controlled party that is about to go into battle with the boss(es) that will be generated.
+     * @param inv The inventory of the party.
+     */
+    public void bossEncounter(ArrayList<PartyMember> party, Inventory inv) {
+
+        /**
+         *
+         */
+        class BossBuilder {
+
+            BossBuilder() {
+                ArrayList<Enemy> bosses = new ArrayList<Enemy>();
+
+                /**
+                 * Battle method is still a WIP, but the boss construction will be different depending on the difficulty
+                 * of the GridSquare
+                 */
+                if (maxDifficulty < 50) {
+                    // startBattle(maxEnemies, maxDifficulty);
+                    openChest(inv);
+                }
+                else if (maxDifficulty < 100) {
+                    // startBattle(maxEnemies, maxDifficulty);
+                    openChest(inv);
+                    openChest(inv);
+                }
+                else {
+                    // startBattle(maxEnemies, maxDifficulty);
+                    openChest(inv);
+                    openChest(inv);
+                    openChest(inv);
+                }
+
+            }
+
+        }
+
         if (special) {
-            System.out.println("You found the boss! Defeat it to beat the game!");
-            // startBoss();
+            System.out.println("You found the boss! Do your best to defeat it!");
+            BossBuilder bb = new BossBuilder();
         }
         else {
             // Do nothing
         }
+
     }
 
     public void setMinEnemies(int maxE) {

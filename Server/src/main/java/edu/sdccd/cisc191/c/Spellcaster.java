@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public interface Spellcaster {
 
     public abstract void fillBook(ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
-                         ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC, int level,
-                         boolean white, boolean black);
+                         ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC, int level);
 
     public void splCast(Spell spl);
 

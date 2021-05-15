@@ -1,16 +1,16 @@
 package edu.sdccd.cisc191.c;
 
-public class StatCalc {
+/**
+ * This is the interface that will be used for anonymous classes in every subclass of Job so that Party Members and
+ * Enemies can calculate stats based on their level and type. Look for usage in these classes:
+ * Knight, Ranged, Mage
+ */
+public interface StatCalc {
 
-    private int totalDef;
-    private int totalAtk;
-
-    public void setTotalDef(double input) { }
-
-    public void setTotalAtk(double input) { }
-
-    public double calcDmg() {
-        return 0.0;
-    }
+    public abstract int setMaxHP();
+    public abstract int setMaxDef();
+    public abstract int setMaxAtk();
+    public abstract int setMaxSpd();
+    public abstract int setMaxMP();
 
 }

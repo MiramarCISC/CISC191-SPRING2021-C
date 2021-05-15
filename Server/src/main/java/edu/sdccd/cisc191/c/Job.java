@@ -6,6 +6,10 @@ public abstract class Job extends Being {
     protected boolean ranged;
     // protected boolean currJob;
 
+    public Job(String type, int bDef, int bAtk, int bSpd, int bHP) {
+        super(type, bDef, bAtk, bSpd, bHP);
+    }
+
     public void setMagical(boolean mag) { magical = mag; }
 
     public void setRanged(boolean ran) { ranged = ran; }

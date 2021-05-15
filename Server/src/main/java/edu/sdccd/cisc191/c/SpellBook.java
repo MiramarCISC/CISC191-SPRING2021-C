@@ -21,43 +21,26 @@ public class SpellBook {
                      ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC, int level,
                      boolean white, boolean black) {
 
-        int i;
+        /**
+         * In order, these lambda expressions accomplish the following:
+         * Check each spell from the master attack list, and if the user can wield it, add it to their spell book
+         * Check each spell from the master healing list, and if the user can wield it, add it to their spell book
+         * Check each spell from the master buff list, and if the user can wield it, add it to their spell book
+         * Check each spell from the master de-buff list, and if the user can wield it, add it to their spell book
+         * Check each spell from the master inflict list, and if the user can wield it, add it to their spell book
+         * Check each spell from the master cure list, and if the user can wield it, add it to their spell book
+         */
+        mLA.forEach(i -> { if ((level >= i.getMinLev()) && (black)) listAtk.add(i);});
 
-        for (i = 0; i < 15; ++i) {
-            if ((level >= mLA.get(i).getMinLev()) && (black)) {
-                listAtk.add(mLA.get(i));
-            }
-        }
+        mLH.forEach(i -> { if ((level >= i.getMinLev()) && (white)) listHeal.add(i);});
 
-        for (i = 0; i < 5; ++i) {
-            if ((level >= mLH.get(i).getMinLev()) && (white)) {
-                listHeal.add(mLH.get(i));
-            }
-        }
+        mLI.forEach(i -> { if ((level >= i.getMinLev()) && (white)) listInc.add(i);});
 
-        for (i = 0; i < 3; ++i) {
-            if ((level >= mLI.get(i).getMinLev()) && (white)) {
-                listInc.add(mLI.get(i));
-            }
-        }
+        mLD.forEach(i -> { if ((level >= i.getMinLev()) && (black)) listDec.add(i);});
 
-        for (i = 0; i < 3; ++i) {
-            if ((level >= mLD.get(i).getMinLev()) && (black)) {
-                listDec.add(mLD.get(i));
-            }
-        }
+        mLN.forEach(i -> { if ((level >= i.getMinLev()) && (black)) listInf.add(i);});
 
-        for (i = 0; i < 4; ++i) {
-            if ((level >= mLN.get(i).getMinLev()) && (black)) {
-                listInf.add(mLN.get(i));
-            }
-        }
-
-        for (i = 0; i < 4; ++i) {
-            if ((level >= mLC.get(i).getMinLev()) && (white)) {
-                listCure.add(mLC.get(i));
-            }
-        }
+        mLC.forEach(i -> { if ((level >= i.getMinLev()) && (black)) listCure.add(i);});
 
     }
 

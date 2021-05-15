@@ -10,7 +10,8 @@ public class Mage extends Job implements Spellcaster {
     private int baseMP;
     private SpellBook spellbook;
 
-    public Mage(boolean white, boolean black) {
+    public Mage(String type, int bDef, int bAtk, int bSpd, int bHP, boolean white, boolean black) {
+        super(type, bDef, bAtk, bSpd, bHP);
         magical = true;
         ranged = false;
         wMage = white;
@@ -38,18 +39,58 @@ public class Mage extends Job implements Spellcaster {
         return 0;
     }
 
-
     @Override
     public void fillBook(ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
-                         ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC, int level,
-                         boolean white, boolean black) {
-        spellbook = new SpellBook(mLA, mLH, mLI, mLD, mLN, mLC, level, white, black);
+                         ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC, int level) {
+        spellbook = new SpellBook(mLA, mLH, mLI, mLD, mLN, mLC, level, wMage, bMage);
     }
 
     @Override
     public void splCast(Spell spl) {
 
     }
+
+    /**
+     * The anonymous version of the StatCalc interface gives this Job subclass specific methods that modify its stats
+     * differently from the other Job subclasses, and is utilized in PartyMember when leveling up or switching Jobs.
+     */
+    StatCalc mageCalc = new StatCalc() {
+
+        @Override
+        public int setMaxHP() {
+            double WIP = baseHP*1.0;
+            for (int i = 0; i < currLevel; ++i) { WIP = WIP*1.2; }
+            return (int)(Math.round(WIP));
+        }
+
+        @Override
+        public int setMaxDef() {
+            double WIP = baseDef;
+            for (int i = 0; i < currLevel; ++i) { WIP = WIP*1.2; }
+            return (int)(Math.round(WIP));
+        }
+
+        @Override
+        public int setMaxAtk() {
+            double WIP = baseAtk;
+            for (int i = 0; i < currLevel; ++i) { WIP = WIP*1.2; }
+            return (int)(Math.round(WIP));
+        }
+
+        @Override
+        public int setMaxSpd() {
+            double WIP = baseSpd;
+            for (int i = 0; i < currLevel; ++i) { WIP = WIP*1.2; }
+            return (int)(Math.round(WIP));
+        }
+
+        @Override
+        public int setMaxMP() {
+            double WIP = baseMP;
+            for (int i = 0; i < currLevel; ++i) { WIP = WIP*1.2; }
+            return (int)(Math.round(WIP));
+        }
+    };
 
     /*
     @Override

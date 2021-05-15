@@ -22,6 +22,21 @@ public class PartyMember extends Battler {
     private int weaponAtk;
     private int armorDef;
 
+    public PartyMember(String pmName) {
+        name = pmName;
+        stunned = false;
+        burned = false;
+        poisoned = false;
+        asleep = false;
+        presentSE = false;
+        presentBuff = false;
+        dead = false;
+
+        exp = 0;
+        durSE = 0;
+        buffCD = 0;
+    }
+
     public void evalEquip() {
         weaponAtk = 0;
 
@@ -213,52 +228,87 @@ public class PartyMember extends Battler {
         switch (newJob) {
             case 0:
                 level = knight1H.expToLevel(exp);
-                // Change stats based on class and level
+                knight1H.setCurrLevel(level);
+                maxHP = knight1H.knightCalc.setMaxHP();
+                defStat = knight1H.knightCalc.setMaxDef();
+                atkStat = knight1H.knightCalc.setMaxAtk();
+                spdStat = knight1H.knightCalc.setMaxSpd();
+                maxMP = knight1H.knightCalc.setMaxMP();
                 break;
             case 1:
                 level = knight2H.expToLevel(exp);
-                // Change stats based on class and level
+                knight2H.setCurrLevel(level);
+                maxHP = knight2H.knightCalc.setMaxHP();
+                defStat = knight2H.knightCalc.setMaxDef();
+                atkStat = knight2H.knightCalc.setMaxAtk();
+                spdStat = knight2H.knightCalc.setMaxSpd();
+                maxMP = knight2H.knightCalc.setMaxMP();
                 break;
             case 2:
                 level = thrower.expToLevel(exp);
-                // Change stats based on class and level
+                thrower.setCurrLevel(level);
+                maxHP = thrower.rangedCalc.setMaxHP();
+                defStat = thrower.rangedCalc.setMaxDef();
+                atkStat = thrower.rangedCalc.setMaxAtk();
+                spdStat = thrower.rangedCalc.setMaxSpd();
+                maxMP = thrower.rangedCalc.setMaxMP();
                 break;
             case 3:
                 level = archer.expToLevel(exp);
-                // Change stats based on class and level
+                archer.setCurrLevel(level);
+                maxHP = archer.rangedCalc.setMaxHP();
+                defStat = archer.rangedCalc.setMaxDef();
+                atkStat = archer.rangedCalc.setMaxAtk();
+                spdStat = archer.rangedCalc.setMaxSpd();
+                maxMP = archer.rangedCalc.setMaxMP();
                 break;
             case 4:
                 level = whiteMage.expToLevel(exp);
-                whiteMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level, true, false);
-                // Change stats based on class and level
+                whiteMage.setCurrLevel(level);
+                whiteMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level);
+                maxHP = whiteMage.mageCalc.setMaxHP();
+                defStat = whiteMage.mageCalc.setMaxDef();
+                atkStat = whiteMage.mageCalc.setMaxAtk();
+                spdStat = whiteMage.mageCalc.setMaxSpd();
+                maxMP = whiteMage.mageCalc.setMaxMP();
                 break;
             case 5:
                 level = blackMage.expToLevel(exp);
-                blackMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level, false, true);
-                // Change stats based on class and level
+                blackMage.setCurrLevel(level);
+                blackMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level);
+                maxHP = blackMage.mageCalc.setMaxHP();
+                defStat = blackMage.mageCalc.setMaxDef();
+                atkStat = blackMage.mageCalc.setMaxAtk();
+                spdStat = blackMage.mageCalc.setMaxSpd();
+                maxMP = blackMage.mageCalc.setMaxMP();
                 break;
             case 6:
                 level = redMage.expToLevel(exp);
-                redMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level, true, true);
-                // Change stats based on class and level
+                redMage.setCurrLevel(level);
+                redMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level);
+                maxHP = redMage.mageCalc.setMaxHP();
+                defStat = redMage.mageCalc.setMaxDef();
+                atkStat = redMage.mageCalc.setMaxAtk();
+                spdStat = redMage.mageCalc.setMaxSpd();
+                maxMP = redMage.mageCalc.setMaxMP();
                 break;
         }
 
     }
 
-/*
-    public void changeEq(CharacterEquipment newEq) {
-        if (currJob < 1) {
-
-        } else if (currJob < 2) {
-
-        } else if (currJob < 4) {
-
-        } else {
-
-        }
+    public void resetStatus() {
+        stunned = false;
+        burned = false;
+        poisoned = false;
+        asleep = false;
+        presentSE = false;
+        presentBuff = false;
+        durSE = 0;
+        buffCD = 0;
+        currDef = defStat;
+        currAtk = atkStat;
+        currSpd = spdStat;
     }
- */
 
     public void setCurrJob(int c) {
         currJob = c;

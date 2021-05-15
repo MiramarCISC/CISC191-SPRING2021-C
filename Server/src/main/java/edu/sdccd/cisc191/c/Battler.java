@@ -27,7 +27,7 @@ public abstract class Battler {
     protected boolean presentSE;
     protected boolean presentBuff;
     // protected StatusEffect status;
-    protected StatCalc calculator;
+    // protected StatCalc calculator;
 
     public void setName(String visName) { name = visName; }
 

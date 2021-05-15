@@ -7,6 +7,15 @@ public abstract class Being {
     protected int baseAtk;
     protected int baseSpd;
     protected int baseHP;
+    protected int currLevel;
+
+    public Being(String type, int bDef, int bAtk, int bSpd, int bHP) {
+        typeName = type;
+        baseDef = bDef;
+        baseAtk = bAtk;
+        baseSpd = bSpd;
+        baseHP = bHP;
+    }
 
     public void setTypeName(String type) {
         typeName = type;
@@ -20,6 +29,8 @@ public abstract class Being {
 
     public void setBaseHP(int bHP) { baseHP = bHP; }
 
+    public void setCurrLevel(int currL) { currLevel = currL; }
+
     public String getTypeName() { return typeName; }
 
     public int getBaseDef() { return baseDef; }
@@ -29,5 +40,7 @@ public abstract class Being {
     public int getBaseSpd() { return baseDef; }
 
     public int getBaseHP() { return baseHP; }
+
+    public int getCurrLevel() { return currLevel; }
 
 }
