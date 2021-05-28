@@ -371,6 +371,14 @@ public class PartyMember extends Battler {
         }
     }
 
+    public void newStats() {
+        currHP = maxHP;
+        currDef = defStat;
+        currAtk = atkStat;
+        currSpd = defStat;
+        currMP = maxMP;
+    }
+
     public void levelUp(ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
                         ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC) {
         exp -= maxXP;
@@ -384,6 +392,7 @@ public class PartyMember extends Battler {
         }
 
         calculateStats(mLA, mLH, mLI, mLD, mLN, mLC);
+        System.out.print(name + "leveled up!");
     }
 
     public void changeJob(int newJob, ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,

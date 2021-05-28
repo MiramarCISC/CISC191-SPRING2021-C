@@ -9,17 +9,17 @@ public final class Grid {
     public Grid() {
         Random rand = new Random();
 
-        byte treasureSquares = 0;
-        // byte shopSquares = 0;
-        byte innSquares = 0;
-        byte bossSquares = 0;
+        int treasureSquares = 0;
+        // int shopSquares = 0;
+        int innSquares = 0;
+        int bossSquares = 0;
 
-        byte treasureTimer = 30;
-        // byte shopTimer = 30;
-        byte innTimer = 30;
-        byte bossTimer = 30;
+        int treasureTimer = 30;
+        // int shopTimer = 30;
+        int innTimer = 30;
+        int bossTimer = 30;
 
-        for (byte i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             double chance;
 
             chance = Math.ceil(rand.nextFloat() * 100);
@@ -61,7 +61,7 @@ public final class Grid {
         }
     }
 
-    public Grid(int maxEnemies, int maxDifficulty, ArrayList<GridSquare> grid) {
+    public Grid(ArrayList<GridSquare> grid) {
         this.grid = grid;
     }
 
@@ -70,7 +70,7 @@ public final class Grid {
     }
 
     public void displayGrid() {
-        for(byte i = 1; i <= grid.size(); i++) {
+        for(int i = 1; i <= grid.size(); i++) {
             System.out.print(i + grid.get(i - 1).getAbbreviation() + " | ");
 
             if(i % 10 == 0) {
@@ -79,11 +79,11 @@ public final class Grid {
         }
     }
 
-    public GridSquare getGridSquare(byte index) {
+    public GridSquare getGridSquare(int index) {
         return grid.get(index);
     }
 
-    public void setGridSquare(byte index, GridSquare square) {
+    public void setGridSquare(int index, GridSquare square) {
         grid.set(index, square);
     }
 }

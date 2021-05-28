@@ -60,8 +60,23 @@ public class Enemy extends Battler {
             /**
              * The enemy's level is determined based on difficulty.
              */
-            int lvl = (int)Math.round(difficulty/5.0);
-            if (lvl == 0) { lvl = 1; }
+            Random rand = new Random();
+            int decider = rand.nextInt(3);
+            int lvl = difficulty;
+            switch (decider) {
+                case 0:
+                    --lvl;
+                    break;
+                case 1:
+                    lvl = lvl;
+                    break;
+                case 2:
+                    ++lvl;
+                    break;
+            }
+            if (lvl == 0) {
+                lvl = 1;
+            }
 
             /**
              * If the enemy is determined to be of a magical type, its casting ability is randomly determined,
@@ -73,7 +88,6 @@ public class Enemy extends Battler {
                 regularMon = new RegMon("Not Used", 0, 0, 0, 0);
 
                 isMagic = true;
-                Random rand = new Random();
                 int magType = rand.nextInt(3);
 
                 boolean b = true;
@@ -147,6 +161,7 @@ public class Enemy extends Battler {
             currAtk = atkStat;
             currSpd = spdStat;
             currMP = maxMP;
+            level = lvl;
 
         }
 

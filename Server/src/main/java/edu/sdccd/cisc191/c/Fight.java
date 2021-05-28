@@ -475,11 +475,12 @@ public class Fight {
                 }
 
                 member.setExp(member.getExp() + sum);
+                System.out.println(member.getName() + " earned " + sum + " experience points!");
             }
         }
     }
 
-    public boolean battle() {
+    public Inventory battle() {
         while (activeFight) {
 
             // Display HP of all fighters
@@ -506,19 +507,40 @@ public class Fight {
             */
 
             // Have user select party member moves
+            allCommands = new ArrayList<ArrayList<Integer>>();
+
             for (int i = 0; i < party.size(); ++i) {
                 Scanner scnr = new Scanner(System.in);
                 System.out.println("Select the commands for " + party.get(i).getName() + ".");
                 ArrayList<Integer> move = new ArrayList<Integer>();
 
                 for (int j = 0; j < 5; ++j) {
-                    int type;
-                    System.out.println("Select command #" + j);
-                    type = scnr.nextInt();
+                    int type = 0;
+                    switch (j) {
+                        case 0:
+                            System.out.println("Select the type of command: (0 = skip, 1 = attack, 2 = use item, 3 = cast spell, 4 = escape)");
+                            type = scnr.nextInt();
+                            break;
+                        case 1:
+                            type = i;
+                            break;
+                        case 2:
+                            System.out.println("Select the target of the move (0-3 for party members, 4-7 for enemies)");
+                            type = scnr.nextInt();
+                            break;
+                        case 3:
+                            System.out.println("Select the type of item or spell, if item/spell was picked");
+                            type = scnr.nextInt();
+                            break;
+                        case 4:
+                            System.out.println("Select the specific item/spell, if item/spell was picked");
+                            type = scnr.nextInt();
+                            break;
+                    }
                     move.add(type);
                 }
 
-                allCommands.set(i, move);
+                allCommands.add(move);
             }
 
             // Randomly select enemy attack targets
@@ -527,8 +549,11 @@ public class Fight {
                 ArrayList<Integer> move = new ArrayList<Integer>();
 
                 move.add(1);
+                move.add(i);
                 move.add(rand.nextInt(4));
-                allCommands.set(i, move);
+                move.add(0);
+                move.add(0);
+                allCommands.add(move);
             }
 
             // Get turn order
@@ -565,12 +590,20 @@ public class Fight {
                     }
                 }
 
+                int tgt = 0;
                 // Skip turn if dead. If not, determine and carry out move via command list
                 if (!dead) {
                     ArrayList<Integer> commands = allCommands.get(b);
                     int moveType;
                     moveType = commands.get(0);
 
+                    /* DEBUG
+                    System.out.println("" + allCommands);
+                    System.out.println("" + commands);
+                    System.out.println("" + moveType);
+                    DEBUG */
+
+                    tgt = commands.get(2);
                     // Skip turn if asleep or if paralyzed (50%)
                     if ((stunned) && (rand.nextInt(2) == 0)) {
                         System.out.println("Couldn't move due to paralysis!");
@@ -581,7 +614,7 @@ public class Fight {
                     else {
                         switch (moveType) {
                             case 0:
-                                System.out.println("Skipped because they were dead at start of turn");
+                                System.out.println("Skipped because they were dead at start of turn.");
                                 break;
                             case 1:
                                 attack(commands.get(1), commands.get(2));
@@ -665,18 +698,28 @@ public class Fight {
                         opponents.get(b - 4).setPresentSE(false);
                     }
                 }
-                // Kill battler if their HP drops below zero
-                int HP;
+                // Kill target if their HP drops below zero
+                if (tgt < 4) {
+                    if (party.get(tgt).getCurrHP() <= 0) {
+                        party.get(tgt).setCurrHP(0);
+                        party.get(tgt).setDead(true);
+                    }
+                }
+                else {
+                    if ( opponents.get(tgt - 4).getCurrHP() <= 0) {
+                        opponents.get(tgt - 4).setCurrHP(0);
+                        opponents.get(tgt - 4).setDead(true);
+                    }
+                }
+                // Kill user if their HP drops below zero
                 if (b < 4) {
-                    HP = party.get(b).getCurrHP();
-                    if (HP <= 0) {
+                    if (party.get(b).getCurrHP() <= 0) {
                         party.get(b).setCurrHP(0);
                         party.get(b).setDead(true);
                     }
                 }
                 else {
-                    HP = opponents.get(b - 4).getCurrHP();
-                    if (HP <= 0) {
+                    if ( opponents.get(b - 4).getCurrHP() <= 0) {
                         opponents.get(b - 4).setCurrHP(0);
                         opponents.get(b - 4).setDead(true);
                     }
@@ -705,6 +748,11 @@ public class Fight {
                     opponentsDead = true;
                     activeFight = false;
                 }
+                /* DEBUG
+                System.out.println("" + partyDead);
+                System.out.println("" + opponentsDead);
+                System.out.println("" + activeFight);
+                DEBUG */
             }
         }
 
@@ -721,7 +769,8 @@ public class Fight {
             eliminateSEs();
         }
 
-        return partyDead;
+        inv.setGo(!partyDead);
+        return inv;
 
     }
 

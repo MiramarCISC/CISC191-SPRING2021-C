@@ -16,15 +16,50 @@ public class NormalSquare extends GridSquare {
 
         if(chance >= 85) {
             System.out.println("An enemy approaches you! Fight!");
-            alive = false;
-        }
 
+            double p = party.size();
+            int sum = 0;
+            for (PartyMember member : party) {
+                sum += member.getLevel();
+            }
+            int avg = (int)(Math.round(sum/p));
+            if (avg == 0) {
+                avg = 1;
+            }
+
+            ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+            int foes = rand.nextInt(4) + 1;
+            for (int i = 0; i < foes; ++i) {
+                String eName = "";
+                switch (i) {
+                    case 0:
+                        eName = "Enemy 1";
+                        break;
+                    case 1:
+                        eName = "Enemy 2";
+                        break;
+                    case 2:
+                        eName = "Enemy 3";
+                        break;
+                    case 3:
+                        eName = "Enemy 4";
+                        break;
+                }
+                boolean mag = rand.nextBoolean();
+                Enemy temp = new Enemy(eName);
+                Enemy.EnemyBuilder builder = temp.new EnemyBuilder(avg, mag);
+                enemies.add(temp);
+            }
+
+            Fight normalF = new Fight(party, enemies, inv);
+            inv = normalF.battle();
+
+        }
         else {
             System.out.println("No enemies appeared. Keep going!");
-            alive = true;
+            inv.setGo(true);
         }
 
-        inv.setGo(alive);
         return inv;
     }
 }
