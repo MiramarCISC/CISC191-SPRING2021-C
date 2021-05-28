@@ -38,7 +38,12 @@ public abstract class Weapon extends Item {
     }
 
     @Override
-    protected void useItem(Battler participant) {
+    public void useOnPM(PartyMember member) {
+
+    }
+
+    @Override
+    public void useOnEnemy(Enemy enemy) {
 
     }
 

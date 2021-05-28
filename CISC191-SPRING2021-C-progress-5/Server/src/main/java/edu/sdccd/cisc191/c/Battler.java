@@ -1,16 +1,31 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 import java.util.ArrayList;
 
 public abstract class Battler {
 
+    public Battler() {
+
+    }
+
+    @CsvBindByName(column = "name")
     protected String name;
+
+    @CsvBindByName(column = "level")
     protected int level;
+
+    @CsvBindByName(column = "exp")
     protected int exp;
+
     protected int maxMP;
     protected int currMP;
     protected int maxHP;
+
+    @CsvBindByName(column = "currHP")
     protected int currHP;
+
     protected int defStat;
     protected int currDef;
     protected int atkStat;
@@ -23,7 +38,10 @@ public abstract class Battler {
     protected boolean burned;
     protected boolean poisoned;
     protected boolean asleep;
+
+    @CsvBindByName(column = "dead")
     protected boolean dead;
+
     protected boolean presentSE;
     protected boolean presentBuff;
     // protected StatusEffect status;

@@ -15,4 +15,12 @@ public class Staff extends Weapon {
     protected void getEffect() {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Staff[name=%s, attack=%d, rarity=%s, applyFire=%b, applyElec=%b, applyIce=%b]",
+                name, attack, rarity, applyFire, applyElec, applyIce);
+    }
+
 }

@@ -1,9 +1,13 @@
 package edu.sdccd.cisc191.c;
 
-public class HealingItem extends Item {
-    private final int healingAmount;
+import com.opencsv.bean.CsvBindByName;
 
-    HealingItem(String name, int healingAmount, int cooldown) {
+public class HealingItem extends Item {
+
+    @CsvBindByName(column = "healingAmount")
+    private int healingAmount;
+
+    public HealingItem(String name, int healingAmount, int cooldown) {
         this.name = name;
         this.healingAmount = healingAmount;
         this.cooldown = cooldown;
@@ -11,20 +15,24 @@ public class HealingItem extends Item {
         stackable = true;
     }
 
+    public HealingItem() {
+
+    }
+
 
     @Override
-    protected void useItem(Battler participant) {
-        if (participant.getBuffCD() <= 0) {
+    public void useOnPM(PartyMember member) {
+        if (member.getBuffCD() <= 0) {
             if (quantity >= 1) {
                 quantity--;
-                int HP = participant.getCurrHP() + healingAmount;
-                if (HP >= participant.getMaxHP()) {
-                    participant.setCurrHP(participant.getMaxHP());
+                int HP = member.getCurrHP() + healingAmount;
+                if (HP >= member.getMaxHP()) {
+                    member.setCurrHP(member.getMaxHP());
                 }
                 else {
-                    participant.setCurrHP(HP);
+                    member.setCurrHP(HP);
                 }
-                participant.setBuffCD(cooldown);
+                member.setBuffCD(cooldown);
             } else {
                 System.out.println("You don't have this item!");
             }
@@ -34,9 +42,38 @@ public class HealingItem extends Item {
         }
     }
 
+    @Override
+    public void useOnEnemy(Enemy enemy) {
+        if (enemy.getBuffCD() <= 0) {
+            if (quantity >= 1) {
+                quantity--;
+                int HP = enemy.getCurrHP() + healingAmount;
+                if (HP >= enemy.getMaxHP()) {
+                    enemy.setCurrHP(enemy.getMaxHP());
+                }
+                else {
+                    enemy.setCurrHP(HP);
+                }
+                enemy.setBuffCD(cooldown);
+            } else {
+                System.out.println("You don't have this item!");
+            }
+        }
+        else {
+            System.out.println("Item is on cooldown!");
+        }
+    }
 
     @Override
     protected void getEffect() {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "HealingBuffItem[name=%s, atkIncrease=%d, cooldown=%d, quantity=%d, stackable=%b. healingAmount=%d]",
+                name, healingAmount, cooldown, quantity, stackable, healingAmount);
+    }
+
 }

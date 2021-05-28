@@ -1,17 +1,36 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 public abstract class Item {
-    protected boolean inBattle;
+
+    @CsvBindByName(column = "stackable")
     protected boolean stackable;
+
+    @CsvBindByName(column = "equippable")
     public boolean equippable;
-    protected boolean key;
+
+    @CsvBindByName(column = "name")
     protected String name;
+
+    @CsvBindByName(column = "description")
     protected String description;
+
+    @CsvBindByName(column = "quantity")
     protected int quantity;
+
+    @CsvBindByName(column = "cooldown")
     protected int cooldown;
+
+    @CsvBindByName(column = "rarity")
     protected String rarity;
 
-    protected abstract void useItem(Battler participant);
+    // protected boolean inBattle;
+    // protected boolean key;
+
+    public abstract void useOnPM(PartyMember member);
+    public abstract void useOnEnemy(Enemy enemy);
+
     protected abstract void getEffect();
 
     protected void increaseQuantity() {

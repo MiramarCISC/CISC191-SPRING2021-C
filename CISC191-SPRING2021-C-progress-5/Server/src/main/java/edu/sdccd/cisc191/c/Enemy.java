@@ -8,6 +8,30 @@ public class Enemy extends Battler {
     private MagicMon magicMon;
     private boolean isMagic;
 
+    public void setMagic(boolean magic) {
+        isMagic = magic;
+    }
+
+    public boolean getMagic() {
+        return isMagic;
+    }
+
+    public RegMon getRegularMon() {
+        return regularMon;
+    }
+
+    public void setRegularMon(RegMon regularMon) {
+        this.regularMon = regularMon;
+    }
+
+    public MagicMon getMagicMon() {
+        return magicMon;
+    }
+
+    public void setMagicMon(MagicMon magicMon) {
+        this.magicMon = magicMon;
+    }
+
     public Enemy(String enName) {
         name = enName;
         stunned = false;

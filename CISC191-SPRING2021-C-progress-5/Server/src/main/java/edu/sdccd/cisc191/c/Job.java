@@ -1,10 +1,20 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 public abstract class Job extends Being {
 
+    @CsvBindByName(column = "magical")
     protected boolean magical;
+
+    @CsvBindByName(column = "ranged")
     protected boolean ranged;
+
     // protected boolean currJob;
+
+    public Job() {
+
+    }
 
     public Job(String type, int bDef, int bAtk, int bSpd, int bHP) {
         super(type, bDef, bAtk, bSpd, bHP);
@@ -29,7 +39,6 @@ public abstract class Job extends Being {
     public void getAllowedArmor() { }
 
     // public boolean getCurrJob() { return currJob; }
-
-    public abstract int expToLevel(int exp);
+    // public abstract int expToLevel(int exp);
 
 }

@@ -1,21 +1,34 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Mage extends Job implements Spellcaster {
 
+    @CsvBindByName(column = "wMage")
     private boolean wMage;
+
+    @CsvBindByName(column = "bMage")
     private boolean bMage;
+
+    @CsvBindByName(column = "baseMP")
     private int baseMP;
+
     private SpellBook spellbook;
 
-    public Mage(String type, int bDef, int bAtk, int bSpd, int bHP, boolean white, boolean black) {
+    public Mage() {
+
+    }
+
+    public Mage(String type, int bDef, int bAtk, int bSpd, int bHP, boolean white, boolean black, int bMP) {
         super(type, bDef, bAtk, bSpd, bHP);
         magical = true;
         ranged = false;
         wMage = white;
         bMage = black;
+        baseMP = bMP;
     }
 
     public void setWMage(boolean white) { wMage = white; }
@@ -34,10 +47,12 @@ public class Mage extends Job implements Spellcaster {
 
     public SpellBook getSpellBook() { return spellbook; }
 
+    /*
     @Override
     public int expToLevel(int exp) {
         return 0;
     }
+    */
 
     @Override
     public void fillBook(ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
@@ -91,6 +106,13 @@ public class Mage extends Job implements Spellcaster {
             return (int)(Math.round(WIP));
         }
     };
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Mage[typeName=%s, baseDef=%d, baseAtk=%d, baseSpd=%d, baseHP=%d, magical=%b, ranged=%b, wMage=%b, bMage=%b, baseMP=%d]",
+                typeName, baseDef, baseAtk, baseSpd, baseHP, magical, ranged, wMage, bMage, baseMP);
+    }
 
     /*
     @Override

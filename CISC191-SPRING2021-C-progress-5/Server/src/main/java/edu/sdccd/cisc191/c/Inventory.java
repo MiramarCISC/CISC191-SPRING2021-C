@@ -4,29 +4,266 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Inventory {
-    private final HealingItem smallHealingPotion = new HealingItem("Small Healing Potion", 100, 2);
-    private final HealingItem mediumHealingPotion = new HealingItem("Medium Healing Potion", 250, 3);
-    private final HealingItem largeHealingPotion = new HealingItem("Large Healing Potion", 500, 4);
 
-    private final AtkBuffItem smallAttackPotion = new AtkBuffItem("Small Attack Potion", 10, 4);
-    private final AtkBuffItem mediumAttackPotion = new AtkBuffItem("Medium Attack Potion", 20, 4);
-    private final AtkBuffItem largeAttackPotion = new AtkBuffItem("Large Attack Potion", 40, 4);
+    public boolean getGo() {
+        return go;
+    }
 
-    private final DefBuffItem smallDefensePotion = new DefBuffItem("Small Defense Potion", 10, 4);
-    private final DefBuffItem mediumDefensePotion = new DefBuffItem("Medium Defense Potion", 20, 4);
-    private final DefBuffItem largeDefensePotion = new DefBuffItem("Large Defense Potion", 40, 4);
+    public void setGo(boolean go) {
+        this.go = go;
+    }
 
-    private final ArrayList<Sword> swords = new ArrayList<>();
-    private final ArrayList<Bow> bows = new ArrayList<>();
-    private final ArrayList<Staff> staffs = new ArrayList<>();
-    private final ArrayList<Throwable> throwable = new ArrayList<>();
+    private boolean go;
 
-    private final ArrayList<Head> heads = new ArrayList<>();
-    private final ArrayList<Body> bodies = new ArrayList<>();
-    private final ArrayList<Legs> legs = new ArrayList<>();
-    private final ArrayList<Feet> feet = new ArrayList<>();
 
-    private final ArrayList<Shield> shields = new ArrayList<>();
+
+    private HealingItem smallHealingPotion = new HealingItem("Small Healing Potion", 100, 2);
+    private HealingItem mediumHealingPotion = new HealingItem("Medium Healing Potion", 250, 3);
+    private HealingItem largeHealingPotion = new HealingItem("Large Healing Potion", 500, 4);
+
+    private AtkBuffItem smallAttackPotion = new AtkBuffItem("Small Attack Potion", 10, 4);
+    private AtkBuffItem mediumAttackPotion = new AtkBuffItem("Medium Attack Potion", 20, 4);
+    private AtkBuffItem largeAttackPotion = new AtkBuffItem("Large Attack Potion", 40, 4);
+
+    private DefBuffItem smallDefensePotion = new DefBuffItem("Small Defense Potion", 10, 4);
+    private DefBuffItem mediumDefensePotion = new DefBuffItem("Medium Defense Potion", 20, 4);
+    private DefBuffItem largeDefensePotion = new DefBuffItem("Large Defense Potion", 40, 4);
+
+    private ArrayList<Sword> swords = new ArrayList<>();
+    private ArrayList<Bow> bows = new ArrayList<>();
+    private ArrayList<Staff> staffs = new ArrayList<>();
+    private ArrayList<Throwable> throwable = new ArrayList<>();
+
+    private ArrayList<Head> heads = new ArrayList<>();
+    private ArrayList<Body> bodies = new ArrayList<>();
+    private ArrayList<Legs> legs = new ArrayList<>();
+    private ArrayList<Feet> feet = new ArrayList<>();
+
+    private ArrayList<Shield> shields = new ArrayList<>();
+
+    public Inventory() {
+        go = true;
+    }
+
+    public Inventory(int heal1, int heal2, int heal3, int atk1, int atk2, int atk3, int def1, int def2, int def3) {
+        go = true;
+        smallHealingPotion.setQuantity(heal1);
+        mediumHealingPotion.setQuantity(heal2);
+        largeHealingPotion.setQuantity(heal3);
+        smallAttackPotion.setQuantity(atk1);
+        mediumAttackPotion.setQuantity(atk2);
+        largeAttackPotion.setQuantity(atk3);
+        smallDefensePotion.setQuantity(def1);
+        mediumDefensePotion.setQuantity(def2);
+        largeDefensePotion.setQuantity(def3);
+    }
+
+    public Inventory(int heal1, int heal2, int heal3, int atk1, int atk2, int atk3, int def1, int def2, int def3,
+                     ArrayList<Sword> swordList, ArrayList<Bow> bowList, ArrayList<Staff> staffList,
+                     ArrayList<Throwable> throwList, ArrayList<Head> headList, ArrayList<Body> bodyList,
+                     ArrayList<Legs> legsList, ArrayList<Feet> feetList) {
+        go = true;
+        smallHealingPotion.setQuantity(heal1);
+        mediumHealingPotion.setQuantity(heal2);
+        largeHealingPotion.setQuantity(heal3);
+        smallAttackPotion.setQuantity(atk1);
+        mediumAttackPotion.setQuantity(atk2);
+        largeAttackPotion.setQuantity(atk3);
+        smallDefensePotion.setQuantity(def1);
+        mediumDefensePotion.setQuantity(def2);
+        largeDefensePotion.setQuantity(def3);
+        swords = swordList;
+        bows = bowList;
+        staffs = staffList;
+        throwable = throwList;
+        heads = headList;
+        bodies = bodyList;
+        legs = legsList;
+        feet = feetList;
+    }
+
+    public HealingItem getSmallHealingPotion() {
+        return smallHealingPotion;
+    }
+
+    public void setSmallHealingPotion(HealingItem smallHealingPotion) {
+        this.smallHealingPotion = smallHealingPotion;
+    }
+
+    public HealingItem getMediumHealingPotion() {
+        return mediumHealingPotion;
+    }
+
+    public void setMediumHealingPotion(HealingItem mediumHealingPotion) {
+        this.mediumHealingPotion = mediumHealingPotion;
+    }
+
+    public HealingItem getLargeHealingPotion() {
+        return largeHealingPotion;
+    }
+
+    public void setLargeHealingPotion(HealingItem largeHealingPotion) {
+        this.largeHealingPotion = largeHealingPotion;
+    }
+
+    public AtkBuffItem getSmallAttackPotion() {
+        return smallAttackPotion;
+    }
+
+    public void setSmallAttackPotion(AtkBuffItem smallAttackPotion) {
+        this.smallAttackPotion = smallAttackPotion;
+    }
+
+    public AtkBuffItem getMediumAttackPotion() {
+        return mediumAttackPotion;
+    }
+
+    public void setMediumAttackPotion(AtkBuffItem mediumAttackPotion) {
+        this.mediumAttackPotion = mediumAttackPotion;
+    }
+
+    public AtkBuffItem getLargeAttackPotion() {
+        return largeAttackPotion;
+    }
+
+    public void setLargeAttackPotion(AtkBuffItem largeAttackPotion) {
+        this.largeAttackPotion = largeAttackPotion;
+    }
+
+    public DefBuffItem getSmallDefensePotion() {
+        return smallDefensePotion;
+    }
+
+    public void setSmallDefensePotion(DefBuffItem smallDefensePotion) {
+        this.smallDefensePotion = smallDefensePotion;
+    }
+
+    public DefBuffItem getMediumDefensePotion() {
+        return mediumDefensePotion;
+    }
+
+    public void setMediumDefensePotion(DefBuffItem mediumDefensePotion) {
+        this.mediumDefensePotion = mediumDefensePotion;
+    }
+
+    public DefBuffItem getLargeDefensePotion() {
+        return largeDefensePotion;
+    }
+
+    public void setLargeDefensePotion(DefBuffItem largeDefensePotion) {
+        this.largeDefensePotion = largeDefensePotion;
+    }
+
+    public ArrayList<Sword> getSwords() {
+        return swords;
+    }
+
+    public void setSwords(ArrayList<Sword> swords) {
+        this.swords = swords;
+    }
+
+    public ArrayList<Bow> getBows() {
+        return bows;
+    }
+
+    public void setBows(ArrayList<Bow> bows) {
+        this.bows = bows;
+    }
+
+    public ArrayList<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(ArrayList<Staff> staffs) {
+        this.staffs = staffs;
+    }
+
+    public ArrayList<Throwable> getThrowable() {
+        return throwable;
+    }
+
+    public void setThrowable(ArrayList<Throwable> throwable) {
+        this.throwable = throwable;
+    }
+
+    public ArrayList<Head> getHeads() {
+        return heads;
+    }
+
+    public void setHeads(ArrayList<Head> heads) {
+        this.heads = heads;
+    }
+
+    public ArrayList<Body> getBodies() {
+        return bodies;
+    }
+
+    public void setBodies(ArrayList<Body> bodies) {
+        this.bodies = bodies;
+    }
+
+    public ArrayList<Legs> getLegs() {
+        return legs;
+    }
+
+    public void setLegs(ArrayList<Legs> legs) {
+        this.legs = legs;
+    }
+
+    public ArrayList<Feet> getFeet() {
+        return feet;
+    }
+
+    public void setFeet(ArrayList<Feet> feet) {
+        this.feet = feet;
+    }
+
+    public ArrayList<Shield> getShields() {
+        return shields;
+    }
+
+    public void setShields(ArrayList<Shield> shields) {
+        this.shields = shields;
+    }
+
+
+    public void useSmallHealOnPM(PartyMember member) {
+        smallHealingPotion.useOnPM(member);
+    }
+
+    public void useMediumHealOnPM(PartyMember member) {
+        mediumHealingPotion.useOnPM(member);
+    }
+
+    public void useLargeHealOnPM(PartyMember member) {
+        largeHealingPotion.useOnPM(member);
+    }
+
+    public void useSmallAttackOnPM(PartyMember member) {
+        smallAttackPotion.useOnPM(member);
+    }
+
+    public void useMediumAttackOnPM(PartyMember member) {
+        mediumAttackPotion.useOnPM(member);
+    }
+
+    public void useLargeAttackOnPM(PartyMember member) {
+        largeAttackPotion.useOnPM(member);
+    }
+
+    public void useSmallDefenseOnPM(PartyMember member) {
+        smallDefensePotion.useOnPM(member);
+    }
+
+    public void useMediumDefenseOnPM(PartyMember member) {
+        mediumDefensePotion.useOnPM(member);
+    }
+
+    public void useLargeDefenseOnPM(PartyMember member) {
+        largeDefensePotion.useOnPM(member);
+    }
+
+
 
     public void showInventory() {
         int i;

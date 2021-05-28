@@ -1,5 +1,7 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 import java.util.ArrayList;
 
 public class PartyMember extends Battler {
@@ -14,7 +16,64 @@ public class PartyMember extends Battler {
     private Mage blackMage;
     private Mage redMage;
 
+    public Knight getKnight1H() {
+        return knight1H;
+    }
+
+    public void setKnight1H(Knight knight1H) {
+        this.knight1H = knight1H;
+    }
+
+    public Knight getKnight2H() {
+        return knight2H;
+    }
+
+    public void setKnight2H(Knight knight2H) {
+        this.knight2H = knight2H;
+    }
+
+    public Ranged getThrower() {
+        return thrower;
+    }
+
+    public void setThrower(Ranged thrower) {
+        this.thrower = thrower;
+    }
+
+    public Ranged getArcher() {
+        return archer;
+    }
+
+    public void setArcher(Ranged archer) {
+        this.archer = archer;
+    }
+
+    public Mage getWhiteMage() {
+        return whiteMage;
+    }
+
+    public void setWhiteMage(Mage whiteMage) {
+        this.whiteMage = whiteMage;
+    }
+
+    public Mage getBlackMage() {
+        return blackMage;
+    }
+
+    public void setBlackMage(Mage blackMage) {
+        this.blackMage = blackMage;
+    }
+
+    public Mage getRedMage() {
+        return redMage;
+    }
+
+    public void setRedMage(Mage redMage) {
+        this.redMage = redMage;
+    }
+
     // Can only be 0 (1H-Knight), 1 (2H-Knight), 2 (Throw), 3 (Archer), 4 (White Mage), 5 (Black Mage), or 6 (Red Mage)
+    @CsvBindByName(column = "currJob")
     private int currJob;
 
     // Stores equipment objects and
@@ -22,19 +81,47 @@ public class PartyMember extends Battler {
     private int weaponAtk;
     private int armorDef;
 
-    public PartyMember(String pmName) {
+    @CsvBindByName(column = "maxXP")
+    private int maxXP;
+
+    public int getMaxXP() {
+        return maxXP;
+    }
+
+    public void setMaxXP(int maxXP) {
+        this.maxXP = maxXP;
+    }
+
+    public PartyMember() {
+
+    }
+
+    public PartyMember(String pmName, int lvl, int ex, int cHP, boolean d, int cJob, int mXP) {
         name = pmName;
+        level = lvl;
+        exp = ex;
+        currHP = cHP;
+        currJob = cJob;
+        maxXP = mXP;
+
         stunned = false;
         burned = false;
         poisoned = false;
         asleep = false;
         presentSE = false;
         presentBuff = false;
-        dead = false;
-
-        exp = 0;
         durSE = 0;
         buffCD = 0;
+
+        dead = d;
+
+        knight1H = new Knight("One-Handed", 10, 8, 7, 20, false);
+        knight2H = new Knight("Two-Handed", 8, 10, 5, 20, true);
+        blackMage = new Mage("Black Mage", 4, 6, 10, 15, false, true, 20);
+        whiteMage = new Mage("White Mage", 6, 4, 10, 15, true, false, 20);
+        redMage = new Mage("Red Mage", 5, 5, 10, 15, true, true, 10);
+        thrower = new Ranged("Thrower", 12, 7, 12, 13, false);
+        archer = new Ranged("Archer", 12, 9, 10, 13, true);
     }
 
     public void evalEquip() {
@@ -219,15 +306,10 @@ public class PartyMember extends Battler {
         }
     }
 
-    public void changeJob(int newJob, ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
-                          ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC) {
-
-        currJob = newJob;
-        charEq = new CharacterEquipment();
-
-        switch (newJob) {
+    public void calculateStats(ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
+                               ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC) {
+        switch (currJob) {
             case 0:
-                level = knight1H.expToLevel(exp);
                 knight1H.setCurrLevel(level);
                 maxHP = knight1H.knightCalc.setMaxHP();
                 defStat = knight1H.knightCalc.setMaxDef();
@@ -236,7 +318,6 @@ public class PartyMember extends Battler {
                 maxMP = knight1H.knightCalc.setMaxMP();
                 break;
             case 1:
-                level = knight2H.expToLevel(exp);
                 knight2H.setCurrLevel(level);
                 maxHP = knight2H.knightCalc.setMaxHP();
                 defStat = knight2H.knightCalc.setMaxDef();
@@ -245,7 +326,6 @@ public class PartyMember extends Battler {
                 maxMP = knight2H.knightCalc.setMaxMP();
                 break;
             case 2:
-                level = thrower.expToLevel(exp);
                 thrower.setCurrLevel(level);
                 maxHP = thrower.rangedCalc.setMaxHP();
                 defStat = thrower.rangedCalc.setMaxDef();
@@ -254,7 +334,6 @@ public class PartyMember extends Battler {
                 maxMP = thrower.rangedCalc.setMaxMP();
                 break;
             case 3:
-                level = archer.expToLevel(exp);
                 archer.setCurrLevel(level);
                 maxHP = archer.rangedCalc.setMaxHP();
                 defStat = archer.rangedCalc.setMaxDef();
@@ -263,7 +342,6 @@ public class PartyMember extends Battler {
                 maxMP = archer.rangedCalc.setMaxMP();
                 break;
             case 4:
-                level = whiteMage.expToLevel(exp);
                 whiteMage.setCurrLevel(level);
                 whiteMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level);
                 maxHP = whiteMage.mageCalc.setMaxHP();
@@ -273,7 +351,6 @@ public class PartyMember extends Battler {
                 maxMP = whiteMage.mageCalc.setMaxMP();
                 break;
             case 5:
-                level = blackMage.expToLevel(exp);
                 blackMage.setCurrLevel(level);
                 blackMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level);
                 maxHP = blackMage.mageCalc.setMaxHP();
@@ -283,7 +360,6 @@ public class PartyMember extends Battler {
                 maxMP = blackMage.mageCalc.setMaxMP();
                 break;
             case 6:
-                level = redMage.expToLevel(exp);
                 redMage.setCurrLevel(level);
                 redMage.fillBook(mLA, mLH, mLI, mLD, mLN, mLC, level);
                 maxHP = redMage.mageCalc.setMaxHP();
@@ -293,6 +369,30 @@ public class PartyMember extends Battler {
                 maxMP = redMage.mageCalc.setMaxMP();
                 break;
         }
+    }
+
+    public void levelUp(ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
+                        ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC) {
+        exp -= maxXP;
+        ++level;
+
+        if (level < 20) {
+            maxXP = (int) (Math.round(maxXP * 1.25));
+        }
+        else {
+            maxXP = 2147483647;
+        }
+
+        calculateStats(mLA, mLH, mLI, mLD, mLN, mLC);
+    }
+
+    public void changeJob(int newJob, ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
+                          ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC) {
+
+        currJob = newJob;
+        charEq = new CharacterEquipment();
+
+        calculateStats(mLA, mLH, mLI, mLD, mLN, mLC);
 
     }
 
@@ -337,6 +437,13 @@ public class PartyMember extends Battler {
     @Override
     protected void moveHappens() {
 
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "PartyMember[name=%s, level=%d, exp=%d, currHP=%d, dead=%b, currJob=%d, maxXP=%d]",
+                name, level, exp, currHP, dead, currJob, maxXP);
     }
 
     /*

@@ -17,6 +17,54 @@ public class SpellBook {
 
     }
 
+    public ArrayList<SpellAoH> getListAtk() {
+        return listAtk;
+    }
+
+    public void setListAtk(ArrayList<SpellAoH> listAtk) {
+        this.listAtk = listAtk;
+    }
+
+    public ArrayList<SpellAoH> getListHeal() {
+        return listHeal;
+    }
+
+    public void setListHeal(ArrayList<SpellAoH> listHeal) {
+        this.listHeal = listHeal;
+    }
+
+    public ArrayList<SpellBuff> getListInc() {
+        return listInc;
+    }
+
+    public void setListInc(ArrayList<SpellBuff> listInc) {
+        this.listInc = listInc;
+    }
+
+    public ArrayList<SpellBuff> getListDec() {
+        return listDec;
+    }
+
+    public void setListDec(ArrayList<SpellBuff> listDec) {
+        this.listDec = listDec;
+    }
+
+    public ArrayList<SpellSE> getListInf() {
+        return listInf;
+    }
+
+    public void setListInf(ArrayList<SpellSE> listInf) {
+        this.listInf = listInf;
+    }
+
+    public ArrayList<SpellSE> getListCure() {
+        return listCure;
+    }
+
+    public void setListCure(ArrayList<SpellSE> listCure) {
+        this.listCure = listCure;
+    }
+
     public SpellBook(ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
                      ArrayList<SpellBuff> mLD, ArrayList<SpellSE> mLN, ArrayList<SpellSE> mLC, int level,
                      boolean white, boolean black) {
