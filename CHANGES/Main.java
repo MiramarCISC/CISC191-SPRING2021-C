@@ -210,9 +210,6 @@ public class Main {
     }
 
     public static void equipChange(Scanner scnr, ArrayList<PartyMember> party, Inventory inv) {
-        //System.out.println("This feature is not yet implemented.");
-        System.out.println(" / // / WIP / // / ");
-
         String selection;
 
         do {
@@ -230,9 +227,6 @@ public class Main {
         // Convert String to int
         int selectedMember = Integer.parseInt(selection);
 
-
-
-
 /*
         // Gets Big Chests to have equipment to test equipping
         inv.obtainedBigChest();
@@ -241,8 +235,6 @@ public class Main {
 
         inv.showInventory();
 */
-
-
 
         System.out.println("  Selected Party Member: " + party.get(selectedMember).getName());
         System.out.println("  - CURRENT EQUIPMENT - ");
@@ -281,8 +273,6 @@ public class Main {
                     System.out.println("NO EQUIPMENT PART SELECTED");
                     break;
             }
-
-
         }
     }
 
@@ -303,74 +293,95 @@ public class Main {
         int selectedArmor = Integer.parseInt(selection);
 
         switch(selectedArmor) {
-            case 0:
-                do {
-                    System.out.println(" - Select New Head Armor - ");
-                    for(int i = 0; i < inv.getHeads().size(); ++i) {
-                        System.out.println( i + " for "+ inv.getHeads().get(i).toString());
-                    }
+                        case 0:
+                if (inv.getHeads().size() > 0) {
+                    do {
+                        System.out.println(" - Select New Head Armor - ");
 
-                    selection = scnr.nextLine();
-                    selectedArmor = Integer.parseInt(selection);
+                        for(int i = 0; i < inv.getHeads().size(); ++i) {
+                            System.out.println( i + " for "+ inv.getHeads().get(i).toString());
+                        }
 
-                } while( selectedArmor > inv.getHeads().size() || selectedArmor < 0);
+                        selection = scnr.nextLine();
+                        selectedArmor = Integer.parseInt(selection);
 
-                party.get(selectedMember).changeHead(
-                        inv.getHeads().get(selectedArmor)
-                );
+                    } while( selectedArmor > inv.getHeads().size() || selectedArmor < 0);
+
+                    party.get(selectedMember).changeHead(
+                            inv.getHeads().get(selectedArmor)
+                    );
+                } else {
+                    System.out.println("No head armor in inventory.");
+                    System.out.println();
+                }
                 break;
 
             case 1:
-                do {
-                    System.out.println(" - Select New Body Armor - ");
-                    for(int i = 0; i < inv.getBodies().size(); ++i) {
-                        System.out.println( i + " for "+ inv.getBodies().get(i).toString());
-                    }
+                if (inv.getBodies().size() > 0) {
+                    do {
+                        System.out.println(" - Select New Body Armor - ");
+                        for(int i = 0; i < inv.getBodies().size(); ++i) {
+                            System.out.println( i + " for "+ inv.getBodies().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedArmor = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedArmor = Integer.parseInt(selection);
 
-                } while( selectedArmor > inv.getBodies().size() || selectedArmor < 0);
+                    } while( selectedArmor > inv.getBodies().size() || selectedArmor < 0);
 
-                party.get(selectedMember).changeBody(
-                        inv.getBodies().get(selectedArmor)
-                );
+                    party.get(selectedMember).changeBody(
+                            inv.getBodies().get(selectedArmor)
+                    );
+                } else {
+                    System.out.println("No body armor in inventory.");
+                    System.out.println();
+                }
                 break;
 
             case 2:
-                do {
-                    System.out.println(" - Select New Leg Armor - ");
-                    for(int i = 0; i < inv.getLegs().size(); ++i) {
-                        System.out.println( i + " for "+ inv.getLegs().get(i).toString());
-                    }
+                if (inv.getLegs().size() > 0) {
+                    do {
+                        System.out.println(" - Select New Leg Armor - ");
+                        for(int i = 0; i < inv.getLegs().size(); ++i) {
+                            System.out.println( i + " for "+ inv.getLegs().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedArmor = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedArmor = Integer.parseInt(selection);
 
-                } while( selectedArmor > inv.getLegs().size() || selectedArmor < 0);
+                    } while( selectedArmor > inv.getLegs().size() || selectedArmor < 0);
 
-                party.get(selectedMember).changeLegs(
-                        inv.getLegs().get(selectedArmor)
-                );
+                    party.get(selectedMember).changeLegs(
+                            inv.getLegs().get(selectedArmor)
+                    );
+                } else {
+                    System.out.println("No leg armor in inventory.");
+                    System.out.println();
+                }
                 break;
 
             case 3:
-                do {
-                    System.out.println(" - Select New Feet Armor - ");
-                    for(int i = 0; i < inv.getFeet().size(); ++i) {
-                        System.out.println( i + " for "+ inv.getFeet().get(i).toString());
-                    }
+                if (inv.getFeet().size() > 0) {
+                    do {
+                        System.out.println(" - Select New Feet Armor - ");
+                        for(int i = 0; i < inv.getFeet().size(); ++i) {
+                            System.out.println( i + " for "+ inv.getFeet().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedArmor = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedArmor = Integer.parseInt(selection);
 
-                } while( selectedArmor > inv.getFeet().size() || selectedArmor < 0);
+                    } while( selectedArmor > inv.getFeet().size() || selectedArmor < 0);
 
-                party.get(selectedMember).changeFeet(
-                        inv.getFeet().get(selectedArmor)
-                );
+                    party.get(selectedMember).changeFeet(
+                            inv.getFeet().get(selectedArmor)
+                    );
+                } else {
+                    System.out.println("No feet armor in inventory.");
+                    System.out.println();
+                }
                 break;
-
+                
             default:
                 System.out.println("NO ARMOR PART SELECTED");
                 break;
@@ -396,89 +407,116 @@ public class Main {
         int selectedWeapon = Integer.parseInt(selection);
 
         switch(selectedWeapon) {
-            case 0:
-                do {
-                    System.out.println(" - Select A New Sword - ");
-                    for (int i = 0; i < inv.getSwords().size(); ++i) {
-                        System.out.println(i + " for " + inv.getSwords().get(i).toString());
-                    }
+                        case 0:
+                if (inv.getSwords().size() > 0) {
+                    do {
+                        System.out.println(" - Select A New Sword - ");
+                        for (int i = 0; i < inv.getSwords().size(); ++i) {
+                            System.out.println(i + " for " + inv.getSwords().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedWeapon = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedWeapon = Integer.parseInt(selection);
 
-                } while (selectedWeapon > inv.getSwords().size() || selectedWeapon < 0);
+                    } while (selectedWeapon > inv.getSwords().size() || selectedWeapon < 0);
 
-                party.get(selectedMember).changeSwd1(
-                        inv.getSwords().get(selectedWeapon)
-                );
+                    party.get(selectedMember).changeSwd1(
+                            inv.getSwords().get(selectedWeapon)
+                    );
+                } else {
+                    System.out.println("No swords in inventory.");
+                    System.out.println();
+                }
+
                 break;
 
             case 1:
-                do {
-                    System.out.println(" - Select A New Bow - ");
-                    for (int i = 0; i < inv.getBows().size(); ++i) {
-                        System.out.println(i + " for " + inv.getBows().get(i).toString());
-                    }
+                if (inv.getBows().size() > 0) {
+                    do {
+                        System.out.println(" - Select A New Bow - ");
+                        for (int i = 0; i < inv.getBows().size(); ++i) {
+                            System.out.println(i + " for " + inv.getBows().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedWeapon = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedWeapon = Integer.parseInt(selection);
 
-                } while (selectedWeapon > inv.getBows().size() || selectedWeapon < 0);
+                    } while (selectedWeapon > inv.getBows().size() || selectedWeapon < 0);
 
-                party.get(selectedMember).changeBow(
-                        inv.getBows().get(selectedWeapon)
-                );
+                    party.get(selectedMember).changeBow(
+                            inv.getBows().get(selectedWeapon)
+                    );
+                } else {
+                    System.out.println("No bows in inventory.");
+                    System.out.println();
+                }
+
                 break;
 
             case 2:
-                do {
-                    System.out.println(" - Select A New Staff - ");
-                    for (int i = 0; i < inv.getStaffs().size(); ++i) {
-                        System.out.println(i + " for " + inv.getStaffs().get(i).toString());
-                    }
+                if (inv.getStaffs().size() > 0) {
+                    do {
+                        System.out.println(" - Select A New Staff - ");
+                        for (int i = 0; i < inv.getStaffs().size(); ++i) {
+                            System.out.println(i + " for " + inv.getStaffs().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedWeapon = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedWeapon = Integer.parseInt(selection);
 
-                } while (selectedWeapon > inv.getStaffs().size() || selectedWeapon < 0);
+                    } while (selectedWeapon > inv.getStaffs().size() || selectedWeapon < 0);
 
-                party.get(selectedMember).changeStf1(
-                        inv.getStaffs().get(selectedWeapon)
-                );
+                    party.get(selectedMember).changeStf1(
+                            inv.getStaffs().get(selectedWeapon)
+                    );
+                } else {
+                    System.out.println("No staffs in inventory.");
+                    System.out.println();
+                }
                 break;
 
             case 3:
-                do {
-                    System.out.println(" - Select A New Throwable - ");
-                    for (int i = 0; i < inv.getThrowable().size(); ++i) {
-                        System.out.println(i + " for " + inv.getThrowable().get(i).toString());
-                    }
+                if (inv.getThrowable().size() > 0) {
+                    do {
+                        System.out.println(" - Select A New Throwable - ");
+                        for (int i = 0; i < inv.getThrowable().size(); ++i) {
+                            System.out.println(i + " for " + inv.getThrowable().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedWeapon = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedWeapon = Integer.parseInt(selection);
 
-                } while (selectedWeapon > inv.getThrowable().size() || selectedWeapon < 0);
+                    } while (selectedWeapon > inv.getThrowable().size() || selectedWeapon < 0);
 
-                party.get(selectedMember).changeThrow(
-                        inv.getThrowable().get(selectedWeapon)
-                );
+                    party.get(selectedMember).changeThrow(
+                            inv.getThrowable().get(selectedWeapon)
+                    );
+                } else {
+                    System.out.println("No throwables in inventory.");
+                    System.out.println();
+                }
                 break;
 
             case 4:
-                do {
-                    System.out.println(" - Select A New Shield - ");
-                    for (int i = 0; i < inv.getShields().size(); ++i) {
-                        System.out.println(i + " for " + inv.getShields().get(i).toString());
-                    }
+                if (inv.getShields().size() > 0) {
+                    do {
+                        System.out.println(" - Select A New Shield - ");
+                        for (int i = 0; i < inv.getShields().size(); ++i) {
+                            System.out.println(i + " for " + inv.getShields().get(i).toString());
+                        }
 
-                    selection = scnr.nextLine();
-                    selectedWeapon = Integer.parseInt(selection);
+                        selection = scnr.nextLine();
+                        selectedWeapon = Integer.parseInt(selection);
 
-                } while (selectedWeapon > inv.getShields().size() || selectedWeapon < 0);
+                    } while (selectedWeapon > inv.getShields().size() || selectedWeapon < 0);
 
-                party.get(selectedMember).changeShield(
-                        inv.getShields().get(selectedWeapon)
-                );
+                    party.get(selectedMember).changeShield(
+                            inv.getShields().get(selectedWeapon)
+                    );
+                } else {
+                    System.out.println("No shields in inventory.");
+                    System.out.println();
+                }
                 break;
 
             default:
