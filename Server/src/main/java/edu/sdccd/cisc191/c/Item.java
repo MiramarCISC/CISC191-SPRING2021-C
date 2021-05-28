@@ -1,20 +1,36 @@
 package edu.sdccd.cisc191.c;
 
-public abstract class Item {
-    protected boolean inBattle;
-    protected boolean stackable;
-    public boolean equippable;
-    protected boolean key;
-    protected String name;
-    protected String description;
-    protected int buyPrice;
-    protected int sellPrice;
-    protected int quantity;
-    protected int cooldown;
-    protected String rarity;
-    protected int duration;
+import com.opencsv.bean.CsvBindByName;
 
-    protected abstract void useItem(Battler participant);
+public abstract class Item {
+
+    @CsvBindByName(column = "stackable")
+    protected boolean stackable;
+
+    @CsvBindByName(column = "equippable")
+    public boolean equippable;
+
+    @CsvBindByName(column = "name")
+    protected String name;
+
+    @CsvBindByName(column = "description")
+    protected String description;
+
+    @CsvBindByName(column = "quantity")
+    protected int quantity;
+
+    @CsvBindByName(column = "cooldown")
+    protected int cooldown;
+
+    @CsvBindByName(column = "rarity")
+    protected String rarity;
+
+    // protected boolean inBattle;
+    // protected boolean key;
+
+    public abstract void useOnPM(PartyMember member);
+    public abstract void useOnEnemy(Enemy enemy);
+
     protected abstract void getEffect();
 
     protected void increaseQuantity() {
@@ -43,9 +59,7 @@ public abstract class Item {
         this.quantity = quantity;
     }
 
-    public int getDuration() { return duration; }
-
-    public void setDuration(int duration) { this.duration = duration; }
+    public int getCooldown() { return cooldown; }
 
 
 }

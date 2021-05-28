@@ -20,4 +20,12 @@ public class Sword extends Weapon {
     protected void getEffect() {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Sword[name=%s, attack=%d, rarity=%s, applyBleeding=%b, twoHanded=%b]",
+                name, attack, rarity, applyBleeding, twoHanded);
+    }
+
 }

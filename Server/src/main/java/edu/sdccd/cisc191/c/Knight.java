@@ -1,8 +1,15 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 public class Knight extends Job {
 
+    @CsvBindByName(column = "handedness")
     private boolean handedness;
+
+    public Knight() {
+
+    }
 
     public Knight(String type, int bDef, int bAtk, int bSpd, int bHP, boolean hand) {
         super(type, bDef, bAtk, bSpd, bHP);
@@ -59,9 +66,18 @@ public class Knight extends Job {
         }
     };
 
+    /*
     @Override
     public int expToLevel(int exp) {
         return 0;
+    }
+    */
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Knight[typeName=%s, baseDef=%d, baseAtk=%d, baseSpd=%d, baseHP=%d, magical=%b, ranged=%b, handedness=%b]",
+                typeName, baseDef, baseAtk, baseSpd, baseHP, magical, ranged, handedness);
     }
 
 }

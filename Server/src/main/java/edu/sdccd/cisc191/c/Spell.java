@@ -1,11 +1,24 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 public abstract class Spell implements Comparable<Spell> {
 
+    @CsvBindByName(column = "name")
     protected String name;
+
+    @CsvBindByName(column = "minLev")
     protected int minLev;
+
+    @CsvBindByName(column = "cost")
     protected int cost;
+
+    @CsvBindByName(column = "color")
     protected boolean color;
+
+    public Spell() {
+
+    }
 
     protected abstract void castOnE(Enemy enemy);
 

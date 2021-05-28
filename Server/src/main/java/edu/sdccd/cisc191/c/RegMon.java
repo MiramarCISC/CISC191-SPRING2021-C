@@ -6,4 +6,11 @@ public class RegMon extends Monster {
         super(type, bDef, bAtk, bSpd, bHP);
     }
 
+    @Override
+    public String toString() {
+        return String.format(
+                "RegMon[typeName=%s, baseDef=%d, baseAtk=%d, baseSpd=%d, baseHP=%d]",
+                typeName, baseDef, baseAtk, baseSpd, baseHP);
+    }
+
 }

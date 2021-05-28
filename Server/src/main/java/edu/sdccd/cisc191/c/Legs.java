@@ -9,8 +9,20 @@ public class Legs extends Armor {
         this.magical = magical;
     }
 
+    public Legs() {
+
+    }
+
     @Override
     protected void getEffect() {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Legs[name=%s, defense=%d, rarity=%s, magical=%b]",
+                name, defense, rarity, magical);
+    }
+
 }

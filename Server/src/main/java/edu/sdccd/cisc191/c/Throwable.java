@@ -12,4 +12,12 @@ public class Throwable extends Weapon {
     protected void getEffect() {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Throwable[name=%s, attack=%d, rarity=%s, applyPosion=%b]",
+                name, attack, rarity, applyPoison);
+    }
+
 }

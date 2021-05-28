@@ -1,8 +1,13 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 public abstract class Armor extends Item {
 
+    @CsvBindByName(column = "defense")
     protected int defense;
+
+    @CsvBindByName(column = "magical")
     protected boolean magical;
 
     public Armor() {
@@ -18,7 +23,12 @@ public abstract class Armor extends Item {
     }
 
     @Override
-    protected void useItem(Battler participant) {
+    public void useOnPM(PartyMember member) {
+
+    }
+
+    @Override
+    public void useOnEnemy(Enemy enemy) {
 
     }
 

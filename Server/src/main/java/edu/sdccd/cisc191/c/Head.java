@@ -9,8 +9,20 @@ public class Head extends Armor {
         this.magical = magical;
     }
 
+    public Head() {
+
+    }
+
     @Override
     protected void getEffect() {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Head[name=%s, defense=%d, rarity=%s, magical=%b]",
+                name, defense, rarity, magical);
+    }
+
 }

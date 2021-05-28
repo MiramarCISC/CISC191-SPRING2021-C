@@ -1,8 +1,15 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 public class Ranged extends Job {
 
+    @CsvBindByName(column = "trwORarc")
     private boolean trwORarc;
+
+    public Ranged() {
+
+    }
 
     public Ranged(String type, int bDef, int bAtk, int bSpd, int bHP, boolean kind) {
         super(type, bDef, bAtk, bSpd, bHP);
@@ -55,9 +62,18 @@ public class Ranged extends Job {
         }
     };
 
+    /*
     @Override
     public int expToLevel(int exp) {
         return 0;
+    }
+    */
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Ranged[typeName=%s, baseDef=%d, baseAtk=%d, baseSpd=%d, baseHP=%d, magical=%b, ranged=%b, trwORarc=%b]",
+                typeName, baseDef, baseAtk, baseSpd, baseHP, magical, ranged, trwORarc);
     }
 
 }

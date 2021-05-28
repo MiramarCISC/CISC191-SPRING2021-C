@@ -1,13 +1,30 @@
 package edu.sdccd.cisc191.c;
 
+import com.opencsv.bean.CsvBindByName;
+
 public abstract class Being {
 
+    @CsvBindByName(column = "typeName")
     protected String typeName;
+
+    @CsvBindByName(column = "baseDef")
     protected int baseDef;
+
+    @CsvBindByName(column = "baseAtk")
     protected int baseAtk;
+
+    @CsvBindByName(column = "baseSpd")
     protected int baseSpd;
+
+    @CsvBindByName(column = "baseHP")
     protected int baseHP;
+
+    @CsvBindByName(column = "currLevel")
     protected int currLevel;
+
+    public Being() {
+
+    }
 
     public Being(String type, int bDef, int bAtk, int bSpd, int bHP) {
         typeName = type;

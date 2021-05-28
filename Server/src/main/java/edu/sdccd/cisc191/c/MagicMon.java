@@ -42,4 +42,12 @@ public class MagicMon extends Monster implements Spellcaster {
     public void splCast(Spell spl) {
 
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "MagicMon[typeName=%s, baseDef=%d, baseAtk=%d, baseSpd=%d, baseHP=%d, magical=%b, baseMP=%d, white=%b, black=%b]",
+                typeName, baseDef, baseAtk, baseSpd, baseHP, magical, baseMP, white, black);
+    }
+
 }
