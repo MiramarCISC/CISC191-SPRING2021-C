@@ -4,25 +4,25 @@ import com.opencsv.bean.CsvBindByName;
 
 public abstract class Item {
 
-    @CsvBindByName(column = "stackable")
+    @CsvBindByName(column = "STACKABLE")
     protected boolean stackable;
 
-    @CsvBindByName(column = "equippable")
+    @CsvBindByName(column = "EQUIPPABLE")
     public boolean equippable;
 
-    @CsvBindByName(column = "name")
+    @CsvBindByName(column = "NAME")
     protected String name;
 
-    @CsvBindByName(column = "description")
+    @CsvBindByName(column = "DESCRIPTION")
     protected String description;
 
-    @CsvBindByName(column = "quantity")
+    @CsvBindByName(column = "QUANTITY")
     protected int quantity;
 
-    @CsvBindByName(column = "cooldown")
+    @CsvBindByName(column = "COOLDOWN")
     protected int cooldown;
 
-    @CsvBindByName(column = "rarity")
+    @CsvBindByName(column = "RARITY")
     protected String rarity;
 
     // protected boolean inBattle;

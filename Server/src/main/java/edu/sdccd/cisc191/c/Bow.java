@@ -22,7 +22,7 @@ public class Bow extends Weapon {
     @Override
     public String toString() {
         return String.format(
-                "Sword[name=%s, attack=%d, rarity=%s, applyFire=%b, applyPoison=%b]",
+                "Sword[NAME=%s, ATTACK=%d, RARITY=%s, APPLYFIRE=%b, APPLYPOISON=%b]",
                 name, attack, rarity, applyFire, applyPoison);
     }
     

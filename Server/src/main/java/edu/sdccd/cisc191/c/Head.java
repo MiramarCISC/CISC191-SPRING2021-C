@@ -21,7 +21,7 @@ public class Head extends Armor {
     @Override
     public String toString() {
         return String.format(
-                "Head[name=%s, defense=%d, rarity=%s, magical=%b]",
+                "Head[NAME=%s, DEFENSE=%d, RARITY=%s, MAGICAL=%b]",
                 name, defense, rarity, magical);
     }
 

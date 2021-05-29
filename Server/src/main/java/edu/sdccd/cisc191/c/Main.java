@@ -3,6 +3,20 @@ package edu.sdccd.cisc191.c;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.Writer;
+import java.nio.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+
+import com.opencsv.bean.*;
+
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import javax.print.attribute.IntegerSyntax;
 
 import static org.apache.commons.lang3.ArrayUtils.contains;
 
@@ -34,7 +48,7 @@ public class Main {
                     newGame(scnr);
                     break;
                 case "l":
-                    loadGame();
+                    loadGame(scnr);
                     break;
                 case "q":
                     run = false;
@@ -133,7 +147,7 @@ public class Main {
 
     }
 
-    public static void loadGame() {
+    public static void loadGame(Scanner scnr) {
         //Create master spellbooks
         ArrayList<SpellAoH> masterListAtk = new ArrayList<SpellAoH>();
 
@@ -189,7 +203,135 @@ public class Main {
         masterListCure.add(new SpellSE("Anti-Venom", 5, 5, true, 0, 2));
         masterListCure.add(new SpellSE("Awaken", 5, 5, true, 0, 3));
 
-        System.out.print("Loading a game is not yet implemented.");
+        // Load from CSV
+        ArrayList<DummyInteger> dInt = new ArrayList<DummyInteger>();
+        List<DummyInteger> diList = new CsvToBeanBuilder<DummyInteger>(new InputStreamReader(Main.class.getResourceAsStream("/Integers.csv")))
+                .withType(DummyInteger.class)
+                .build()
+                .parse();
+        dInt.addAll(diList);
+        System.out.println(dInt);
+
+        Inventory newInv = new Inventory(dInt.get(0).getInteger(), dInt.get(1).getInteger(), dInt.get(2).getInteger(),
+                dInt.get(3).getInteger(), dInt.get(4).getInteger(), dInt.get(5).getInteger(), dInt.get(6).getInteger(),
+                dInt.get(7).getInteger(), dInt.get(8).getInteger());
+
+        int pos = dInt.get(9).getInteger();
+
+        ArrayList<PartyMember> party = new ArrayList<PartyMember>();
+        List<PartyMember> pmList = new CsvToBeanBuilder<PartyMember>(new InputStreamReader(Main.class.getResourceAsStream("/PartyMembers.csv")))
+                .withType(PartyMember.class)
+                .build()
+                .parse();
+        party.addAll(pmList);
+        for (int i = 0; i < 4; ++i) {
+            party.get(i).calculateStats(masterListAtk, masterListHeal, masterListDec, masterListInc, masterListInf,
+                    masterListCure);
+            party.get(i).newStats();
+        }
+
+        ArrayList<Sword> swords = new ArrayList<Sword>();
+        List<Sword> swordList = new CsvToBeanBuilder<Sword>(new InputStreamReader(Main.class.getResourceAsStream("/Swords.csv")))
+                .withType(Sword.class)
+                .build()
+                .parse();
+        swords.addAll(swordList);
+        newInv.setSwords(swords);
+
+        ArrayList<Bow> bows = new ArrayList<Bow>();
+        List<Bow> bowList = new CsvToBeanBuilder<Bow>(new InputStreamReader(Main.class.getResourceAsStream("/Bows.csv")))
+                .withType(Bow.class)
+                .build()
+                .parse();
+        bows.addAll(bowList);
+        newInv.setBows(bows);
+
+        ArrayList<Staff> staffs = new ArrayList<Staff>();
+        List<Staff> staffList = new CsvToBeanBuilder<Staff>(new InputStreamReader(Main.class.getResourceAsStream("/Staffs.csv")))
+                .withType(Staff.class)
+                .build()
+                .parse();
+        staffs.addAll(staffList);
+        newInv.setStaffs(staffs);
+
+        ArrayList<Throwable> throwables = new ArrayList<Throwable>();
+        List<Throwable> throwableList = new CsvToBeanBuilder<Throwable>(new InputStreamReader(Main.class.getResourceAsStream("/Throws.csv")))
+                .withType(Throwable.class)
+                .build()
+                .parse();
+        throwables.addAll(throwableList);
+        newInv.setThrowable(throwables);
+
+        ArrayList<Head> heads = new ArrayList<Head>();
+        List<Head> headList = new CsvToBeanBuilder<Head>(new InputStreamReader(Main.class.getResourceAsStream("/Heads.csv")))
+                .withType(Head.class)
+                .build()
+                .parse();
+        heads.addAll(headList);
+        newInv.setHeads(heads);
+
+        ArrayList<Body> bodies = new ArrayList<Body>();
+        List<Body> bodyList = new CsvToBeanBuilder<Body>(new InputStreamReader(Main.class.getResourceAsStream("/Bodies.csv")))
+                .withType(Body.class)
+                .build()
+                .parse();
+        bodies.addAll(bodyList);
+        newInv.setBodies(bodies);
+
+        ArrayList<Legs> legs = new ArrayList<Legs>();
+        List<Legs> legsList = new CsvToBeanBuilder<Legs>(new InputStreamReader(Main.class.getResourceAsStream("/Legs.csv")))
+                .withType(Legs.class)
+                .build()
+                .parse();
+        legs.addAll(legsList);
+        newInv.setLegs(legs);
+
+        ArrayList<Feet> feet = new ArrayList<Feet>();
+        List<Feet> feetList = new CsvToBeanBuilder<Feet>(new InputStreamReader(Main.class.getResourceAsStream("/Feet.csv")))
+                .withType(Feet.class)
+                .build()
+                .parse();
+        feet.addAll(feetList);
+        newInv.setFeet(feet);
+
+        ArrayList<Shield> shields = new ArrayList<Shield>();
+        List<Shield> shieldList = new CsvToBeanBuilder<Shield>(new InputStreamReader(Main.class.getResourceAsStream("/Shields.csv")))
+                .withType(Shield.class)
+                .build()
+                .parse();
+        shields.addAll(shieldList);
+        newInv.setShields(shields);
+
+        ArrayList<DummyString> dStr = new ArrayList<DummyString>();
+        List<DummyString> dsList = new CsvToBeanBuilder<DummyString>(new InputStreamReader(Main.class.getResourceAsStream("/Strings.csv")))
+                .withType(DummyString.class)
+                .build()
+                .parse();
+        dStr.addAll(dsList);
+        Grid grid = new Grid();
+        for (int i = 0; i < 100; ++i) {
+            String abb = dStr.get(i).getStr();
+            switch (abb) {
+                case "B":
+                    grid.setGridSquare(i, new BossSquare());
+                    break;
+                case "I":
+                    grid.setGridSquare(i, new InnSquare());
+                    break;
+                case "N":
+                    grid.setGridSquare(i, new NormalSquare());
+                    break;
+                case "T":
+                    grid.setGridSquare(i, new TreasureSquare());
+                    break;
+                default:
+                    grid.setGridSquare(i, new NormalSquare());
+                    break;
+            }
+        }
+
+        System.out.print("The game has been loaded.");
+        playGame(scnr, grid, pos, party, newInv);
 
     }
 
@@ -257,8 +399,145 @@ public class Main {
         }
     }
 
-    public static void saveGame(Grid grid, ArrayList<PartyMember> party, Inventory inv) {
-        System.out.println("Saving a game is not yet implemented.");
+    public static void saveGame(Grid grid, int pos, ArrayList<PartyMember> party, Inventory inv) {
+
+        ArrayList<Integer> quantities = new ArrayList<Integer>();
+        quantities.add(inv.getSmallHealingPotion().getQuantity());
+        quantities.add(inv.getMediumHealingPotion().getQuantity());
+        quantities.add(inv.getLargeHealingPotion().getQuantity());
+        quantities.add(inv.getSmallAttackPotion().getQuantity());
+        quantities.add(inv.getMediumAttackPotion().getQuantity());
+        quantities.add(inv.getLargeAttackPotion().getQuantity());
+        quantities.add(inv.getSmallDefensePotion().getQuantity());
+        quantities.add(inv.getMediumDefensePotion().getQuantity());
+        quantities.add(inv.getLargeDefensePotion().getQuantity());
+        quantities.add(pos);
+        ArrayList<DummyInteger> dInt = new ArrayList<DummyInteger>();
+        quantities.forEach((i) -> dInt.add(new DummyInteger(i)));
+
+        ArrayList<String> types = new ArrayList<String>();
+        for (GridSquare square : grid.getGrid()) {
+            types.add(square.getAbbreviation());
+        }
+        ArrayList<DummyString> dStr = new ArrayList<DummyString>();
+        types.forEach((s) -> dStr.add(new DummyString(s)));
+
+        try {
+            FileWriter pmWriter = new FileWriter("Server/src/main/resources/PartyMembers.csv");
+            HeaderColumnNameMappingStrategy pmStrategy = new HeaderColumnNameMappingStrategy();
+            pmStrategy.setType(PartyMember.class);
+            // pmStrategy.setColumnMapping("name", "level", "exp", "currHP", "currMP", "dead", "currJob", "maxXP");
+            StatefulBeanToCsvBuilder<PartyMember> builder1 = new StatefulBeanToCsvBuilder(pmWriter);
+            StatefulBeanToCsv beanWriter1 = builder1.withMappingStrategy(pmStrategy).build();
+            beanWriter1.write(party);
+            pmWriter.close();
+
+            FileWriter swordWriter = new FileWriter("Server/src/main/resources/Swords.csv");
+            HeaderColumnNameMappingStrategy swordStrategy = new HeaderColumnNameMappingStrategy();
+            swordStrategy.setType(Sword.class);
+            // swordStrategy.setColumnMapping("name", "attack", "rarity", "applyBleeding", "twoHanded");
+            StatefulBeanToCsvBuilder<Sword> builder2 = new StatefulBeanToCsvBuilder(swordWriter);
+            StatefulBeanToCsv beanWriter2 = builder2.withMappingStrategy(swordStrategy).build();
+            beanWriter2.write(inv.getSwords());
+            swordWriter.close();
+
+            FileWriter bowWriter = new FileWriter("Server/src/main/resources/Bows.csv");
+            HeaderColumnNameMappingStrategy bowStrategy = new HeaderColumnNameMappingStrategy();
+            bowStrategy.setType(Bow.class);
+            // bowStrategy.setColumnMapping("name", "attack", "rarity", "applyFire", "applyPoison");
+            StatefulBeanToCsvBuilder<Bow> builder3 = new StatefulBeanToCsvBuilder(bowWriter);
+            StatefulBeanToCsv beanWriter3 = builder3.withMappingStrategy(bowStrategy).build();
+            beanWriter3.write(inv.getBows());
+            bowWriter.close();
+
+            FileWriter staffWriter = new FileWriter("Server/src/main/resources/Staffs.csv");
+            HeaderColumnNameMappingStrategy staffStrategy = new HeaderColumnNameMappingStrategy();
+            staffStrategy.setType(Staff.class);
+            // staffStrategy.setColumnMapping("name", "attack", "rarity", "applyFire", "applyElec", "applyIce");
+            StatefulBeanToCsvBuilder<Staff> builder4 = new StatefulBeanToCsvBuilder(staffWriter);
+            StatefulBeanToCsv beanWriter4 = builder4.withMappingStrategy(staffStrategy).build();
+            beanWriter4.write(inv.getStaffs());
+            staffWriter.close();
+
+            FileWriter throwWriter = new FileWriter("Server/src/main/resources/Throws.csv");
+            HeaderColumnNameMappingStrategy throwStrategy = new HeaderColumnNameMappingStrategy();
+            throwStrategy.setType(Throwable.class);
+            // throwStrategy.setColumnMapping("name", "attack", "rarity", "applyPoison");
+            StatefulBeanToCsvBuilder<Throwable> builder5 = new StatefulBeanToCsvBuilder(throwWriter);
+            StatefulBeanToCsv beanWriter5 = builder5.withMappingStrategy(throwStrategy).build();
+            beanWriter5.write(inv.getThrowable());
+            throwWriter.close();
+
+            FileWriter headWriter = new FileWriter("Server/src/main/resources/Heads.csv");
+            HeaderColumnNameMappingStrategy headStrategy = new HeaderColumnNameMappingStrategy();
+            headStrategy.setType(Head.class);
+            // headStrategy.setColumnMapping("name", "defense", "rarity", "magical");
+            StatefulBeanToCsvBuilder<Head> builder6 = new StatefulBeanToCsvBuilder(headWriter);
+            StatefulBeanToCsv beanWriter6 = builder6.withMappingStrategy(headStrategy).build();
+            beanWriter6.write(inv.getHeads());
+            headWriter.close();
+
+            FileWriter bodyWriter = new FileWriter("Server/src/main/resources/Bodies.csv");
+            HeaderColumnNameMappingStrategy bodyStrategy = new HeaderColumnNameMappingStrategy();
+            bodyStrategy.setType(Body.class);
+            // bodyStrategy.setColumnMapping("name", "defense", "rarity", "magical");
+            StatefulBeanToCsvBuilder<Body> builder7 = new StatefulBeanToCsvBuilder(bodyWriter);
+            StatefulBeanToCsv beanWriter7 = builder7.withMappingStrategy(bodyStrategy).build();
+            beanWriter7.write(inv.getBodies());
+            bodyWriter.close();
+
+            FileWriter legsWriter = new FileWriter("Server/src/main/resources/Legs.csv");
+            HeaderColumnNameMappingStrategy legsStrategy = new HeaderColumnNameMappingStrategy();
+            legsStrategy.setType(Legs.class);
+            // legsStrategy.setColumnMapping("name", "defense", "rarity", "magical");
+            StatefulBeanToCsvBuilder<Legs> builder8 = new StatefulBeanToCsvBuilder(legsWriter);
+            StatefulBeanToCsv beanWriter8 = builder8.withMappingStrategy(legsStrategy).build();
+            beanWriter8.write(inv.getLegs());
+            legsWriter.close();
+
+            FileWriter feetWriter = new FileWriter("Server/src/main/resources/Feet.csv");
+            HeaderColumnNameMappingStrategy feetStrategy = new HeaderColumnNameMappingStrategy();
+            feetStrategy.setType(Feet.class);
+            // feetStrategy.setColumnMapping("name", "defense", "rarity", "magical");
+            StatefulBeanToCsvBuilder<Feet> builder9 = new StatefulBeanToCsvBuilder(feetWriter);
+            StatefulBeanToCsv beanWriter9 = builder9.withMappingStrategy(feetStrategy).build();
+            beanWriter9.write(inv.getFeet());
+            feetWriter.close();
+
+            FileWriter shieldWriter = new FileWriter("Server/src/main/resources/Shields.csv");
+            HeaderColumnNameMappingStrategy shieldStrategy = new HeaderColumnNameMappingStrategy();
+            shieldStrategy.setType(Shield.class);
+            // shieldStrategy.setColumnMapping("name", "dmgReduction", "defIncrease", "rarity", "dmgReduction", "defIncrease");
+            StatefulBeanToCsvBuilder<Shield> builder10 = new StatefulBeanToCsvBuilder(shieldWriter);
+            StatefulBeanToCsv beanWriter10 = builder10.withMappingStrategy(shieldStrategy).build();
+            beanWriter10.write(inv.getShields());
+            shieldWriter.close();
+
+            FileWriter intWriter = new FileWriter("Server/src/main/resources/Integers.csv");
+            HeaderColumnNameMappingStrategy intStrategy = new HeaderColumnNameMappingStrategy();
+            intStrategy.setType(DummyInteger.class);
+            // intStrategy.setColumnMapping("integer");
+            StatefulBeanToCsvBuilder<DummyInteger> builder11 = new StatefulBeanToCsvBuilder(intWriter);
+            StatefulBeanToCsv beanWriter11 = builder11.withMappingStrategy(intStrategy).build();
+            beanWriter11.write(dInt);
+            intWriter.close();
+
+            FileWriter strWriter = new FileWriter("Server/src/main/resources/Strings.csv");
+            HeaderColumnNameMappingStrategy strStrategy = new HeaderColumnNameMappingStrategy();
+            strStrategy.setType(DummyString.class);
+            // strStrategy.setColumnMapping("str");
+            StatefulBeanToCsvBuilder<DummyString> builder12 = new StatefulBeanToCsvBuilder(strWriter);
+            StatefulBeanToCsv beanWriter12 = builder12.withMappingStrategy(strStrategy).build();
+            beanWriter12.write(dStr);
+            strWriter.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("The game has been saved.");
+        System.out.println("");
     }
 
     public static String inGameMenu(Scanner scnr) {
@@ -1006,7 +1285,7 @@ public class Main {
                         displayStats(party);
                         break;
                     case "q":
-                        saveGame(grid, party, inv);
+                        saveGame(grid, position, party, inv);
                         activeGame = false;
                         moved = false;
                         break;

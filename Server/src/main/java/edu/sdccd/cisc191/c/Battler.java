@@ -10,23 +10,23 @@ public abstract class Battler {
 
     }
 
-    @CsvBindByName(column = "name")
+    @CsvBindByName(column = "NAME")
     protected String name;
 
-    @CsvBindByName(column = "level")
+    @CsvBindByName(column = "LEVEL")
     protected int level;
 
-    @CsvBindByName(column = "exp")
+    @CsvBindByName(column = "EXP")
     protected int exp;
 
     protected int maxMP;
 
-    @CsvBindByName(column = "currMP")
+    @CsvBindByName(column = "CURRMP")
     protected int currMP;
 
     protected int maxHP;
 
-    @CsvBindByName(column = "currHP")
+    @CsvBindByName(column = "CURRHP")
     protected int currHP;
 
     protected int defStat;
@@ -42,7 +42,7 @@ public abstract class Battler {
     protected boolean poisoned;
     protected boolean asleep;
 
-    @CsvBindByName(column = "dead")
+    @CsvBindByName(column = "DEAD")
     protected boolean dead;
 
     protected boolean presentSE;

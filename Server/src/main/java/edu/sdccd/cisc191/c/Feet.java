@@ -21,7 +21,7 @@ public class Feet extends Armor {
     @Override
     public String toString() {
         return String.format(
-                "Feet[name=%s, defense=%d, rarity=%s, magical=%b]",
+                "Feet[NAME=%s, DEFENSE=%d, RARITY=%s, MAGICAL=%b]\"",
                 name, defense, rarity, magical);
     }
 
