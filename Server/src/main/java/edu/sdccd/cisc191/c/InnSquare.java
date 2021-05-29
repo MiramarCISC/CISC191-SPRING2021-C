@@ -10,6 +10,7 @@ public class InnSquare extends GridSquare {
     @Override
     public Inventory action(ArrayList<PartyMember> party, Inventory inv) {
         System.out.println("You've arrived at an inn!");
+        System.out.println("The party was fully healed and any dead party members have bee revived!");
 
         for (PartyMember member : party) {
             member.setCurrHP(member.getMaxHP());

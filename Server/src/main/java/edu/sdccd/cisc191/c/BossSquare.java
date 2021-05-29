@@ -1,6 +1,7 @@
 package edu.sdccd.cisc191.c;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BossSquare extends GridSquare {
     public BossSquare() {
@@ -9,12 +10,30 @@ public class BossSquare extends GridSquare {
 
     @Override
     public Inventory action(ArrayList<PartyMember> party, Inventory inv) {
-        boolean alive = true;
+        System.out.println("You found a boss! It's tougher than most enemies!");
 
-        System.out.println("You found the boss! Defeat it to beat the game!");
-        alive = false;
+        Random rand = new Random();
+        ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
-        inv.setGo(alive);
+        double p = party.size();
+        int sum = 0;
+        for (PartyMember member : party) {
+            sum += member.getLevel();
+        }
+        int avg = (int)(Math.round(sum/p));
+        if (avg == 0) {
+            avg = 1;
+        }
+        avg += 3;
+
+        boolean mag = rand.nextBoolean();
+        Enemy temp = new Enemy("Boss");
+        Enemy.EnemyBuilder builder = temp.new EnemyBuilder(avg, mag);
+        enemies.add(temp);
+
+        Fight bossF = new Fight(party, enemies, inv);
+        inv = bossF.battle();
+
         return inv;
     }
 }

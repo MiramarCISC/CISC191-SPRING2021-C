@@ -20,7 +20,10 @@ public abstract class Battler {
     protected int exp;
 
     protected int maxMP;
+
+    @CsvBindByName(column = "currMP")
     protected int currMP;
+
     protected int maxHP;
 
     @CsvBindByName(column = "currHP")
@@ -135,9 +138,7 @@ public abstract class Battler {
 
     public boolean getPresentBuff() { return presentBuff; }
 
-
-    protected abstract void moveHappens();
-
+    // protected abstract void moveHappens();
     // protected abstract StatusEffect getStatus();
     // protected abstract void setStatus(StatusEffect newStatus);
 }

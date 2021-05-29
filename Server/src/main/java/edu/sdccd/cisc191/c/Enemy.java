@@ -167,9 +167,4 @@ public class Enemy extends Battler {
 
     }
 
-    @Override
-    protected void moveHappens() {
-
-    }
-
 }

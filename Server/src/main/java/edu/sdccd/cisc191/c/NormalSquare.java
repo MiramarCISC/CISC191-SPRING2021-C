@@ -12,7 +12,6 @@ public class NormalSquare extends GridSquare {
     public Inventory action(ArrayList<PartyMember> party, Inventory inv) {
         Random rand = new Random();
         int chance = rand.nextInt(100) + 1;
-        boolean alive = true;
 
         if(chance >= 85) {
             System.out.println("An enemy approaches you! Fight!");

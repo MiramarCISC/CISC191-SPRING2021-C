@@ -116,7 +116,7 @@ public class SpellBook {
 
         ArrayList<SpellAoH> masterListHeal = new ArrayList<SpellAoH>();
 
-        masterListHeal.add(new SpellAoH("Small Heal", 3, 3, true, 0, 12));
+        masterListHeal.add(new SpellAoH("Small Heal", 1, 3, true, 0, 12));
         masterListHeal.add(new SpellAoH("Moderate Heal", 5, 7, true, 0, 24));
         masterListHeal.add(new SpellAoH("Large Heal", 9, 11, true, 0, 36));
         masterListHeal.add(new SpellAoH("Half Heal", 17, 15, true, 0, 50));

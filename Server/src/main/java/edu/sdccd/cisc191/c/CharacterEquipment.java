@@ -2,7 +2,9 @@ package edu.sdccd.cisc191.c;
 
 public class CharacterEquipment {
 
-    /** Blank CharacterEquipment() constructor */
+    /**
+     * Blank CharacterEquipment() constructor
+     */
     public CharacterEquipment() {
         this.swd1 = null;
         this.swd2 = null;
@@ -37,13 +39,21 @@ public class CharacterEquipment {
         swd2 = sw2Choice;
     }
 
-    public void setStf1(Staff st1Choice) { stf1 = st1Choice;}
+    public void setStf1(Staff st1Choice) {
+        stf1 = st1Choice;
+    }
 
-    public void setStf2(Staff st2Choice) { stf2 = st2Choice;}
+    public void setStf2(Staff st2Choice) {
+        stf2 = st2Choice;
+    }
 
-    public void setBow(Bow bowChoice) { bow = bowChoice;}
+    public void setBow(Bow bowChoice) {
+        bow = bowChoice;
+    }
 
-    public void setTrw(Throwable trwChoice) { trw = trwChoice;}
+    public void setTrw(Throwable trwChoice) {
+        trw = trwChoice;
+    }
 
     public void setHead(Head headChoice) {
         head = headChoice;
@@ -65,35 +75,59 @@ public class CharacterEquipment {
         shield = shChoice;
     }
 
-    public Sword getSwd1() { return swd1; }
+    public Sword getSwd1() {
+        return swd1;
+    }
 
-    public Sword getSwd2() { return swd2; }
+    public Sword getSwd2() {
+        return swd2;
+    }
 
-    public Staff getStf1() { return stf1; }
+    public Staff getStf1() {
+        return stf1;
+    }
 
-    public Staff getStf2() { return stf2; }
+    public Staff getStf2() {
+        return stf2;
+    }
 
-    public Bow getBow() { return bow; }
+    public Bow getBow() {
+        return bow;
+    }
 
-    public Throwable getTrw() { return trw; }
+    public Throwable getTrw() {
+        return trw;
+    }
 
-    public Head getHead() { return head; }
+    public Head getHead() {
+        return head;
+    }
 
-    public Body getBody() { return body; }
+    public Body getBody() {
+        return body;
+    }
 
-    public Legs getLegs() { return legs; }
+    public Legs getLegs() {
+        return legs;
+    }
 
-    public Feet getFeet() { return feet; }
+    public Feet getFeet() {
+        return feet;
+    }
 
-    public Shield getShield() { return shield; }
+    public Shield getShield() {
+        return shield;
+    }
 
-    /** This method assumes the main slot for sword and staff are swd1 and stf1 */
+    /**
+     * This method assumes the main slot for sword and staff are swd1 and stf1
+     */
     public void showEquipment() {
         if (head != null || body != null || legs != null || feet != null || swd1 != null || swd2 != null || stf1 != null
-        || stf2 != null || bow != null || trw != null || shield != null) {
-            System.out.print("Armor: ");
+                || stf2 != null || bow != null || trw != null || shield != null) {
+            System.out.println("Armor: ");
             if (head != null) {
-                System.out.print("Head Armor: " + head.getName() + ", ");
+                System.out.println("Head Armor: " + head.getName() + ", ");
             }
             if (body != null) {
                 System.out.println("Body Armor: " + body.getName() + ", ");
@@ -104,6 +138,7 @@ public class CharacterEquipment {
             if (feet != null) {
                 System.out.println("Feet Armor: " + feet.getName());
             }
+            System.out.println("Weapons: ");
             if (swd1 != null) {
                 System.out.println("Sword 1: " + swd1.getName());
             }
@@ -125,11 +160,8 @@ public class CharacterEquipment {
             if (shield != null) {
                 System.out.println("Shield: " + shield.getName());
             }
-        }
-        else {
+        } else {
             System.out.println("No equipment was equipped on this character.");
         }
     }
-
-
 }

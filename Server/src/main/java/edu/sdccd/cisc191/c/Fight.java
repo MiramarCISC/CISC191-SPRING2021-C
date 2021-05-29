@@ -220,92 +220,112 @@ public class Fight {
                 switch (type) {
                     case 0:
                         // Attack
-                        if (sb.getListAtk().get(index).getCost() < party.get(user).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListAtk().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListAtk().isEmpty()) && (index < sb.getListAtk().size())) {
+                            if (sb.getListAtk().get(index).getCost() < party.get(user).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListAtk().get(index).castOnPM(party.get(target));
+                                }
+                                else {
+                                    sb.getListAtk().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListAtk().get(index).getCost());
                             }
                             else {
-                                sb.getListAtk().get(index).castOnE(opponents.get(target - 4));
+                                System.out.println(party.get(user).getName() + " does not have enough MP!");
                             }
-                            party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListAtk().get(index).getCost());
                         }
                         else {
-                            System.out.println(party.get(user).getName() + " does not have enough MP!");
+                            System.out.println(party.get(user).getName() + " has not learned this spell!");
                         }
                         break;
                     case 1:
                         // Heal
-                        if (sb.getListHeal().get(index).getCost() < party.get(user).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListHeal().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListHeal().isEmpty()) && (index < sb.getListHeal().size())) {
+                            if (sb.getListHeal().get(index).getCost() < party.get(user).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListHeal().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListHeal().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListHeal().get(index).getCost());
+                            } else {
+                                System.out.println(party.get(user).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListHeal().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListHeal().get(index).getCost());
                         }
                         else {
-                            System.out.println(party.get(user).getName() + " does not have enough MP!");
+                            System.out.println(party.get(user).getName() + " has not learned this spell!");
                         }
                         break;
                     case 2:
                         // Buff
-                        if (sb.getListInc().get(index).getCost() < party.get(user).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListInc().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListInc().isEmpty()) && (index < sb.getListInc().size())) {
+                            if (sb.getListInc().get(index).getCost() < party.get(user).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListInc().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListInc().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListInc().get(index).getCost());
+                            } else {
+                                System.out.println(party.get(user).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListInc().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListInc().get(index).getCost());
                         }
                         else {
-                            System.out.println(party.get(user).getName() + " does not have enough MP!");
+                            System.out.println(party.get(user).getName() + " has not learned this spell!");
                         }
                         break;
                     case 3:
                         // De-Buff
-                        if (sb.getListDec().get(index).getCost() < party.get(user).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListDec().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListDec().isEmpty()) && (index < sb.getListDec().size())) {
+                            if (sb.getListDec().get(index).getCost() < party.get(user).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListDec().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListDec().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListDec().get(index).getCost());
+                            } else {
+                                System.out.println(party.get(user).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListDec().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListDec().get(index).getCost());
                         }
                         else {
-                            System.out.println(party.get(user).getName() + " does not have enough MP!");
+                            System.out.println(party.get(user).getName() + " has not learned this spell!");
                         }
                         break;
                     case 4:
                         // Inflict SE
-                        if (sb.getListInf().get(index).getCost() < party.get(user).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListInf().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListInf().isEmpty()) && (index < sb.getListInf().size())) {
+                            if (sb.getListInf().get(index).getCost() < party.get(user).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListInf().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListInf().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListInf().get(index).getCost());
+                            } else {
+                                System.out.println(party.get(user).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListInf().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListInf().get(index).getCost());
                         }
                         else {
-                            System.out.println(party.get(user).getName() + " does not have enough MP!");
+                            System.out.println(party.get(user).getName() + " has not learned this spell!");
                         }
                         break;
                     case 5:
                         // Cure SE
-                        if (sb.getListCure().get(index).getCost() < party.get(user).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListCure().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListCure().isEmpty()) && (index < sb.getListCure().size())) {
+                            if (sb.getListCure().get(index).getCost() < party.get(user).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListCure().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListCure().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListCure().get(index).getCost());
+                            } else {
+                                System.out.println(party.get(user).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListCure().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            party.get(user).setCurrMP(party.get(user).getCurrMP() - sb.getListCure().get(index).getCost());
                         }
                         else {
-                            System.out.println(party.get(user).getName() + " does not have enough MP!");
+                            System.out.println(party.get(user).getName() + " has not learned this spell!");
                         }
                         break;
                 }
@@ -321,92 +341,110 @@ public class Fight {
                 switch (type) {
                     case 0:
                         // Attack
-                        if (sb.getListAtk().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListAtk().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListAtk().isEmpty()) && (index < sb.getListAtk().size())) {
+                            if (sb.getListAtk().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListAtk().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListAtk().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListAtk().get(index).getCost());
+                            } else {
+                                System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListAtk().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListAtk().get(index).getCost());
                         }
                         else {
-                            System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
+                            System.out.println(opponents.get(user - 4).getName() + " has not learned this spell!");
                         }
                         break;
                     case 1:
                         // Heal
-                        if (sb.getListHeal().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListHeal().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListHeal().isEmpty()) && (index < sb.getListHeal().size())) {
+                            if (sb.getListHeal().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListHeal().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListHeal().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListHeal().get(index).getCost());
+                            } else {
+                                System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListHeal().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListHeal().get(index).getCost());
                         }
                         else {
-                            System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
+                            System.out.println(opponents.get(user - 4).getName() + " has not learned this spell!");
                         }
                         break;
                     case 2:
                         // Buff
-                        if (sb.getListInc().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListInc().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListInc().isEmpty()) && (index < sb.getListInc().size())) {
+                            if (sb.getListInc().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListInc().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListInc().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListInc().get(index).getCost());
+                            } else {
+                                System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListInc().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListInc().get(index).getCost());
                         }
                         else {
-                            System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
+                            System.out.println(opponents.get(user - 4).getName() + " has not learned this spell!");
                         }
                         break;
                     case 3:
                         // De-Buff
-                        if (sb.getListDec().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListDec().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListDec().isEmpty()) && (index < sb.getListDec().size())) {
+                            if (sb.getListDec().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListDec().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListDec().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListDec().get(index).getCost());
+                            } else {
+                                System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListDec().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListDec().get(index).getCost());
                         }
                         else {
-                            System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
+                            System.out.println(opponents.get(user - 4).getName() + " has not learned this spell!");
                         }
                         break;
                     case 4:
                         // Inflict SE
-                        if (sb.getListInf().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListInf().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListInf().isEmpty()) && (index < sb.getListInf().size())) {
+                            if (sb.getListInf().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListInf().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListInf().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListInf().get(index).getCost());
+                            } else {
+                                System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListInf().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListInf().get(index).getCost());
                         }
                         else {
-                            System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
+                            System.out.println(opponents.get(user - 4).getName() + " has not learned this spell!");
                         }
                         break;
                     case 5:
                         // Cure SE
-                        if (sb.getListCure().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
-                            if (target < 4) {
-                                sb.getListCure().get(index).castOnPM(party.get(target));
+                        if ((!sb.getListCure().isEmpty()) && (index < sb.getListCure().size())) {
+                            if (sb.getListCure().get(index).getCost() < opponents.get(user - 4).getCurrMP()) {
+                                if (target < 4) {
+                                    sb.getListCure().get(index).castOnPM(party.get(target));
+                                } else {
+                                    sb.getListCure().get(index).castOnE(opponents.get(target - 4));
+                                }
+                                opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListCure().get(index).getCost());
+                            } else {
+                                System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
                             }
-                            else {
-                                sb.getListCure().get(index).castOnE(opponents.get(target - 4));
-                            }
-                            opponents.get(user - 4).setCurrMP(opponents.get(user - 4).getCurrMP() - sb.getListCure().get(index).getCost());
                         }
                         else {
-                            System.out.println(opponents.get(user - 4).getName() + " does not have enough MP!");
+                            System.out.println(opponents.get(user - 4).getName() + " has not learned this spell!");
                         }
                         break;
                 }
@@ -452,7 +490,7 @@ public class Fight {
     }
 
     public void rewardExp () {
-        // WIP - Earning: base times the level difference if the enemy is higher level
+        // Earning: base times the level difference if the enemy is higher level
         // If equal level, give base xp instead, if lower level, 0.8 for each level lower
         for (PartyMember member : party) {
             if (!member.getDead()) {
@@ -515,26 +553,61 @@ public class Fight {
                 ArrayList<Integer> move = new ArrayList<Integer>();
 
                 for (int j = 0; j < 5; ++j) {
-                    int type = 0;
+                    int type = -1;
                     switch (j) {
                         case 0:
-                            System.out.println("Select the type of command: (0 = skip, 1 = attack, 2 = use item, 3 = cast spell, 4 = escape)");
-                            type = scnr.nextInt();
+                            do {
+                                System.out.println("Select the type of command: (0 = skip, 1 = attack, 2 = use item, 3 = cast spell, 4 = escape)");
+                                type = scnr.nextInt();
+                            } while ((type < 0) || (type > 4));
                             break;
                         case 1:
                             type = i;
                             break;
                         case 2:
-                            System.out.println("Select the target of the move (0-3 for party members, 4-7 for enemies)");
-                            type = scnr.nextInt();
+                            do {
+                                System.out.println("Select the target of the move (0-3 for party members, 4-7 for enemies)");
+                                type = scnr.nextInt();
+                            } while ((type < 0) || (type > (3 + opponents.size())));
                             break;
                         case 3:
-                            System.out.println("Select the type of item or spell, if item/spell was picked");
-                            type = scnr.nextInt();
+                            switch (move.get(0)) {
+                                case 2:
+                                    do {
+                                        System.out.println("Select the type of item: 0 for Healing, 1 for Attack Buff, 2 for Defense Buff");
+                                        type = scnr.nextInt();
+                                    } while ((type < 0) || (type > 2));
+                                    break;
+                                case 3:
+                                    do {
+                                        System.out.println("Select the type of spell: 0 for Attack, 1 for Heal, 2 for Buff, 3 for Debuff, 4 for SE Inflict, 5 for SE Cure");
+                                        type = scnr.nextInt();
+                                    } while ((type < 0) || (type > 5));
+                                    break;
+                                default:
+                                    type = 0;
+                                    break;
+                            }
+
                             break;
                         case 4:
-                            System.out.println("Select the specific item/spell, if item/spell was picked");
-                            type = scnr.nextInt();
+                            switch (move.get(0)) {
+                                case 2:
+                                    do {
+                                        System.out.println("Select the specific item: 0 for Small, 1 for Medium, 2 for Large");
+                                        type = scnr.nextInt();
+                                    } while ((type < 0) || (type > 2));
+                                    break;
+                                case 3:
+                                    do {
+                                        System.out.println("Select the specific spell: Index for the spell category list, 0 to 4");
+                                        type = scnr.nextInt();
+                                    } while ((type < 0) || (type > 5));
+                                    break;
+                                default:
+                                    type = 0;
+                                    break;
+                            }
                             break;
                     }
                     move.add(type);

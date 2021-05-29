@@ -226,6 +226,45 @@ public class Inventory {
         this.shields = shields;
     }
 
+
+    public void useSmallHealOnPM(PartyMember member) {
+        smallHealingPotion.useOnPM(member);
+    }
+
+    public void useMediumHealOnPM(PartyMember member) {
+        mediumHealingPotion.useOnPM(member);
+    }
+
+    public void useLargeHealOnPM(PartyMember member) {
+        largeHealingPotion.useOnPM(member);
+    }
+
+    public void useSmallAttackOnPM(PartyMember member) {
+        smallAttackPotion.useOnPM(member);
+    }
+
+    public void useMediumAttackOnPM(PartyMember member) {
+        mediumAttackPotion.useOnPM(member);
+    }
+
+    public void useLargeAttackOnPM(PartyMember member) {
+        largeAttackPotion.useOnPM(member);
+    }
+
+    public void useSmallDefenseOnPM(PartyMember member) {
+        smallDefensePotion.useOnPM(member);
+    }
+
+    public void useMediumDefenseOnPM(PartyMember member) {
+        mediumDefensePotion.useOnPM(member);
+    }
+
+    public void useLargeDefenseOnPM(PartyMember member) {
+        largeDefensePotion.useOnPM(member);
+    }
+
+
+
     public void showInventory() {
         int i;
         if (!swords.isEmpty()) {

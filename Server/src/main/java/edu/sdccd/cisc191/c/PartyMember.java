@@ -77,7 +77,7 @@ public class PartyMember extends Battler {
     private int currJob;
 
     // Stores equipment objects and
-    private CharacterEquipment charEq;
+    private CharacterEquipment charEq = new CharacterEquipment();
     private int weaponAtk;
     private int armorDef;
 
@@ -96,11 +96,12 @@ public class PartyMember extends Battler {
 
     }
 
-    public PartyMember(String pmName, int lvl, int ex, int cHP, boolean d, int cJob, int mXP) {
+    public PartyMember(String pmName, int lvl, int ex, int cHP, int cMP, boolean d, int cJob, int mXP) {
         name = pmName;
         level = lvl;
         exp = ex;
         currHP = cHP;
+        currMP = cMP;
         currJob = cJob;
         maxXP = mXP;
 
@@ -117,9 +118,9 @@ public class PartyMember extends Battler {
 
         knight1H = new Knight("One-Handed", 10, 8, 7, 20, false);
         knight2H = new Knight("Two-Handed", 8, 10, 5, 20, true);
-        blackMage = new Mage("Black Mage", 4, 6, 10, 15, false, true, 20);
-        whiteMage = new Mage("White Mage", 6, 4, 10, 15, true, false, 20);
-        redMage = new Mage("Red Mage", 5, 5, 10, 15, true, true, 10);
+        blackMage = new Mage("Black Mage", 4, 6, 10, 15, false, true, 50);
+        whiteMage = new Mage("White Mage", 6, 4, 10, 15, true, false, 50);
+        redMage = new Mage("Red Mage", 5, 5, 10, 15, true, true, 30);
         thrower = new Ranged("Thrower", 12, 7, 12, 13, false);
         archer = new Ranged("Archer", 12, 9, 10, 13, true);
     }
@@ -392,7 +393,6 @@ public class PartyMember extends Battler {
         }
 
         calculateStats(mLA, mLH, mLI, mLD, mLN, mLC);
-        System.out.print(name + "leveled up!");
     }
 
     public void changeJob(int newJob, ArrayList<SpellAoH> mLA, ArrayList<SpellAoH> mLH, ArrayList<SpellBuff> mLI,
@@ -400,6 +400,7 @@ public class PartyMember extends Battler {
 
         currJob = newJob;
         charEq = new CharacterEquipment();
+        evalEquip();
 
         calculateStats(mLA, mLH, mLI, mLD, mLN, mLC);
 
@@ -435,8 +436,44 @@ public class PartyMember extends Battler {
         return currJob;
     }
 
+    public String getCurrJobName() {
+        String jobName = "";
+
+        switch (currJob) {
+            case 0:
+                jobName = "1H-Knight";
+                break;
+            case 1:
+                jobName = "2H-Knight";
+                break;
+            case 2:
+                jobName = "Throw";
+                break;
+            case 3:
+                jobName = "Archer";
+                break;
+            case 4:
+                jobName = "White Mage";
+                break;
+            case 5:
+                jobName = "Black Mage";
+                break;
+            case 6:
+                jobName = "Red Mage";
+                break;
+            default:
+                jobName = "NO CURR JOB";
+                break;
+        }
+        return jobName;
+    }
+
     public int getArmorDef() {
         return armorDef;
+    }
+
+    public CharacterEquipment getCurrEquip() {
+        return charEq;
     }
 
     public int getWeaponAtk() {
@@ -444,28 +481,10 @@ public class PartyMember extends Battler {
     }
 
     @Override
-    protected void moveHappens() {
-
-    }
-
-    @Override
     public String toString() {
         return String.format(
-                "PartyMember[name=%s, level=%d, exp=%d, currHP=%d, dead=%b, currJob=%d, maxXP=%d]",
-                name, level, exp, currHP, dead, currJob, maxXP);
+                "PartyMember[name=%s, level=%d, exp=%d, currHP=%d, currMP=%d, dead=%b, currJob=%d, maxXP=%d]",
+                name, level, exp, currHP, currMP, dead, currJob, maxXP);
     }
 
-    /*
-    @Override
-    protected void setStatus(StatusEffect newStatus) {
-
-    }
-    */
-
-    /*
-    @Override
-    protected StatusEffect getStatus() {
-        return null;
-    }
-    */
 }
