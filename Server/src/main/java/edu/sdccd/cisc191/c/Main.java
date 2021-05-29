@@ -38,6 +38,7 @@ public class Main {
             System.out.println("The game is over when all party members are dead. Progress from the last save is lost.");
             System.out.println("");
             System.out.println("***WARNING: TYPING NON-INTS WHEN ASKED FOR INTS MAY CAUSE GAME TO CRASH***");
+            System.out.println("***WARNING: THE LOAD GAME FEATURE DOES NOT FUNCTION AND CAUSES GAME TO CRASH***");
             System.out.println("");
             System.out.println("Type N to start a new game, L to load a game, or Q to quit.");
 
